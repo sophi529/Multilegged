@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2FD743381D1C6AC9007D99C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743371D1C6AC9007D99C1 /* main.cpp */; };
+		2FD7434A1D1C6AFB007D99C1 /* Leg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD7433F1D1C6AFB007D99C1 /* Leg.cpp */; };
+		2FD7434B1D1C6AFB007D99C1 /* LeggedAgent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743411D1C6AFB007D99C1 /* LeggedAgent.cpp */; };
+		2FD7434C1D1C6AFB007D99C1 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743431D1C6AFB007D99C1 /* Random.cpp */; };
+		2FD7434D1D1C6AFB007D99C1 /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743451D1C6AFB007D99C1 /* Source.cpp */; };
+		2FD7434E1D1C6AFB007D99C1 /* Tsearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743471D1C6AFB007D99C1 /* Tsearch.cpp */; };
+		2FD743501D1C6B3F007D99C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD7434F1D1C6B3F007D99C1 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +29,19 @@
 
 /* Begin PBXFileReference section */
 		2FD743341D1C6AC9007D99C1 /* Multilegged */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Multilegged; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FD743371D1C6AC9007D99C1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		2FD7433E1D1C6AFB007D99C1 /* CTRNN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRNN.h; sourceTree = "<group>"; };
+		2FD7433F1D1C6AFB007D99C1 /* Leg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Leg.cpp; sourceTree = "<group>"; };
+		2FD743401D1C6AFB007D99C1 /* Leg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Leg.hpp; sourceTree = "<group>"; };
+		2FD743411D1C6AFB007D99C1 /* LeggedAgent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LeggedAgent.cpp; sourceTree = "<group>"; };
+		2FD743421D1C6AFB007D99C1 /* LeggedAgent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LeggedAgent.hpp; sourceTree = "<group>"; };
+		2FD743431D1C6AFB007D99C1 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		2FD743441D1C6AFB007D99C1 /* Random.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
+		2FD743451D1C6AFB007D99C1 /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Source.cpp; sourceTree = "<group>"; };
+		2FD743461D1C6AFB007D99C1 /* Source.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Source.hpp; sourceTree = "<group>"; };
+		2FD743471D1C6AFB007D99C1 /* Tsearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tsearch.cpp; sourceTree = "<group>"; };
+		2FD743481D1C6AFB007D99C1 /* Tsearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tsearch.hpp; sourceTree = "<group>"; };
+		2FD743491D1C6AFB007D99C1 /* VectorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMatrix.h; sourceTree = "<group>"; };
+		2FD7434F1D1C6B3F007D99C1 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +74,19 @@
 		2FD743361D1C6AC9007D99C1 /* Multilegged */ = {
 			isa = PBXGroup;
 			children = (
-				2FD743371D1C6AC9007D99C1 /* main.cpp */,
+				2FD7434F1D1C6B3F007D99C1 /* main.cpp */,
+				2FD7433E1D1C6AFB007D99C1 /* CTRNN.h */,
+				2FD7433F1D1C6AFB007D99C1 /* Leg.cpp */,
+				2FD743401D1C6AFB007D99C1 /* Leg.hpp */,
+				2FD743411D1C6AFB007D99C1 /* LeggedAgent.cpp */,
+				2FD743421D1C6AFB007D99C1 /* LeggedAgent.hpp */,
+				2FD743431D1C6AFB007D99C1 /* Random.cpp */,
+				2FD743441D1C6AFB007D99C1 /* Random.hpp */,
+				2FD743451D1C6AFB007D99C1 /* Source.cpp */,
+				2FD743461D1C6AFB007D99C1 /* Source.hpp */,
+				2FD743471D1C6AFB007D99C1 /* Tsearch.cpp */,
+				2FD743481D1C6AFB007D99C1 /* Tsearch.hpp */,
+				2FD743491D1C6AFB007D99C1 /* VectorMatrix.h */,
 			);
 			path = Multilegged;
 			sourceTree = "<group>";
@@ -118,7 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD743381D1C6AC9007D99C1 /* main.cpp in Sources */,
+				2FD7434D1D1C6AFB007D99C1 /* Source.cpp in Sources */,
+				2FD7434C1D1C6AFB007D99C1 /* Random.cpp in Sources */,
+				2FD743501D1C6B3F007D99C1 /* main.cpp in Sources */,
+				2FD7434A1D1C6AFB007D99C1 /* Leg.cpp in Sources */,
+				2FD7434E1D1C6AFB007D99C1 /* Tsearch.cpp in Sources */,
+				2FD7434B1D1C6AFB007D99C1 /* LeggedAgent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +243,7 @@
 		2FD7433C1D1C6AC9007D99C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -216,6 +251,7 @@
 		2FD7433D1D1C6AC9007D99C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
