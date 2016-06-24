@@ -325,15 +325,9 @@ int main(int seed, char* argv[])
     //cout << s.VectorSize() << endl;
 
     // Configure the search
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     s.SetRandomSeed(seed);
-=======
-    s.SetRandomSeed(20001);
->>>>>>> f8047a75152a8628b8b7291f34dec018f49b7ee4
-=======
-    s.SetRandomSeed(30001);
->>>>>>> be0fe1790868cd9cd41548956fb003faa53e7189
+
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
