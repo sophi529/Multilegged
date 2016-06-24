@@ -307,7 +307,7 @@ int main(int seed, char* argv[])
 {
     //
     LeggedAgent Insect;
-   
+    //seed = 2342;
     //
     
     
@@ -321,7 +321,7 @@ int main(int seed, char* argv[])
     //cout << s.VectorSize() << endl;
 
     // Configure the search
-    s.SetRandomSeed(10001);
+    s.SetRandomSeed(seed);
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
