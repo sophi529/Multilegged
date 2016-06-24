@@ -320,7 +320,7 @@ int main(int argc, char* argv[])
     //cout << s.VectorSize() << endl;
 
     // Configure the search
-    s.SetRandomSeed(23894);
+    s.SetRandomSeed(234987);
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
@@ -359,7 +359,7 @@ int main(int argc, char* argv[])
     // Run the agent
     Insect.NervousSystem.RandomizeCircuitState(0,0);
     Insect.Reset(0, 0, 0);
-    ofstream xl("/Users/Sophi529/Desktop/walk_14.dat" /*, ios::app*/);
+    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/walk_14.dat" /*, ios::app*/);
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
         for (int i = 0; i <=5; i++) {

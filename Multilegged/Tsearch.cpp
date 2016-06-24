@@ -449,7 +449,7 @@ void TSearch::UpdatePopulationStatistics(void)
 void TSearch::DisplayPopulationStatistics(void)
 {
     ofstream xlev;
-    xlev.open ("/Users/Sophi529/Desktop/14.dat", ios::app);
+    xlev.open ("/Users/Sophi529/Desktop/Multilegged/testing/14.dat", ios::app);
     if (PopulationStatisticsDisplayFunction != NULL)
         (*PopulationStatisticsDisplayFunction)(Gen,BestPerf,AvgPerf,PerfVar);
     else {
