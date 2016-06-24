@@ -302,7 +302,8 @@ double evaluate(TVector<double> &v, RandomState &r){
 }
 
 
-int main(int argc, char* argv[])
+//int main(int argc, char* argv[])
+int main(int seed, char* argv[])
 {
     //
     LeggedAgent Insect;
