@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F6970021D1D96DA00B0C803 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD7434F1D1C6B3F007D99C1 /* main.cpp */; };
 		2FD7434A1D1C6AFB007D99C1 /* Leg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD7433F1D1C6AFB007D99C1 /* Leg.cpp */; };
 		2FD7434B1D1C6AFB007D99C1 /* LeggedAgent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743411D1C6AFB007D99C1 /* LeggedAgent.cpp */; };
 		2FD7434C1D1C6AFB007D99C1 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743431D1C6AFB007D99C1 /* Random.cpp */; };
 		2FD7434D1D1C6AFB007D99C1 /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743451D1C6AFB007D99C1 /* Source.cpp */; };
 		2FD7434E1D1C6AFB007D99C1 /* Tsearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD743471D1C6AFB007D99C1 /* Tsearch.cpp */; };
-		2FD743501D1C6B3F007D99C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD7434F1D1C6B3F007D99C1 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -149,7 +149,7 @@
 			files = (
 				2FD7434D1D1C6AFB007D99C1 /* Source.cpp in Sources */,
 				2FD7434C1D1C6AFB007D99C1 /* Random.cpp in Sources */,
-				2FD743501D1C6B3F007D99C1 /* main.cpp in Sources */,
+				2F6970021D1D96DA00B0C803 /* main.cpp in Sources */,
 				2FD7434A1D1C6AFB007D99C1 /* Leg.cpp in Sources */,
 				2FD7434E1D1C6AFB007D99C1 /* Tsearch.cpp in Sources */,
 				2FD7434B1D1C6AFB007D99C1 /* LeggedAgent.cpp in Sources */,
@@ -275,6 +275,7 @@
 				2FD7433D1D1C6AC9007D99C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
