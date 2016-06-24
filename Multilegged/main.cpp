@@ -359,7 +359,7 @@ int main(int seed, char* argv[])
     
     
     
-    
+    //randomize the neuron states. very slightly
 
     // Run the agent
     Insect.NervousSystem.RandomizeCircuitState(0,0);
