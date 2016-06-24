@@ -316,22 +316,22 @@ int main(int seed, char* argv[])
     
     TSearch s(2);
  
-    /*
-    if(Model1)
-        s.SetVectorSize(vector_size_Model1);
-    else
-     */
+ 
+    //if(Model1)
+    //    s.SetVectorSize(vector_size_Model1);
+    //else
+ 
         s.SetVectorSize(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
-    s.SetRandomSeed(30001);
+    s.SetRandomSeed(40001);
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(150);
-    s.SetMaxGenerations(1500);
+    s.SetMaxGenerations(2000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -364,7 +364,7 @@ int main(int seed, char* argv[])
     // Run the agent
     Insect.NervousSystem.RandomizeCircuitState(0,0);
     Insect.Reset(0, 0, 0);
-    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_21.dat" /*, ios::app*/);
+    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_22.dat");
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
         for (int i = 0; i <=5; i++) {
@@ -394,13 +394,13 @@ int main(int seed, char* argv[])
 int main()
 {
     TVector<double> testvec;
-    testvec.SetSize(vector_size_Model1);
-    for (int i = 1; i <=vector_size_Model1; i++) {
+    testvec.SetSize(vector_size);
+    for (int i = 1; i <=vector_size; i++) {
         testvec[i] = i;
     }
     
     LeggedAgent Insect;
-    Insect.NervousSystem.SetCircuitSize(onelegneuron_num);
+    Insect.NervousSystem.SetCircuitSize(neuron_num);
     Assign_params(testvec, Insect.NervousSystem);
     cout << Insect.NervousSystem;
     return 0;
