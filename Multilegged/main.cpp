@@ -305,11 +305,11 @@ double evaluate(TVector<double> &v, RandomState &r){
 
 
 //int main(int argc, char* argv[])
-int main(int seed, char* argv[])
+int main(int seed, string filename_walk, string filename)
 {
     //
     LeggedAgent Insect;
-   
+    //seed = 2342;
     //
     
     
@@ -325,7 +325,17 @@ int main(int seed, char* argv[])
     //cout << s.VectorSize() << endl;
 
     // Configure the search
+<<<<<<< HEAD
     s.SetRandomSeed(60001);
+=======
+
+
+    s.SetRandomSeed(seed);
+
+
+    //s.SetRandomSeed(40001);
+
+>>>>>>> 5a3266caf2c333d917f639701eeaf4bb604559ac
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
