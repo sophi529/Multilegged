@@ -91,6 +91,7 @@ double max_weight = 10;
      
      int vi = 1;
      int vim = 1;
+     /*
   if (Model1)
       
   {for(int i = 1;i <= onelegneuron_num;i++)
@@ -118,7 +119,7 @@ double max_weight = 10;
       }
   }
      
-  else
+  else*/
   {for(int i = 1;i <= neuron_num;i++)
  NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));
  
@@ -126,9 +127,10 @@ double max_weight = 10;
  double tau = MapSearchParameter(v[vi++], min_time, max_time);
  NervousSystem.SetNeuronTimeConstant(i, tau);
  }
-for(int i = 1; i <= neuron_num; i++){
-    NervousSystem.SetNeuronGain(i, MapSearchParameter(v[vi++], min_bias, max_bias));
-}}
+//for(int i = 1; i <= neuron_num; i++){
+ //   NervousSystem.SetNeuronGain(i, MapSearchParameter(v[vi++], min_bias, max_bias));
+//}
+  }
      
      
      
@@ -151,7 +153,7 @@ for(int i = 1; i <= neuron_num; i++){
      //copy one set of connection weights for each leg
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vim++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi/*m*/++], min_weight, max_weight));
              
              NervousSystem.SetConnectionWeight(leg2[i], leg2[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
              NervousSystem.SetConnectionWeight(leg3[i], leg3[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
@@ -314,9 +316,11 @@ int main(int seed, char* argv[])
     
     TSearch s(2);
  
+    /*
     if(Model1)
         s.SetVectorSize(vector_size_Model1);
     else
+     */
         s.SetVectorSize(vector_size);
     //cout << s.VectorSize() << endl;
 
@@ -360,7 +364,7 @@ int main(int seed, char* argv[])
     // Run the agent
     Insect.NervousSystem.RandomizeCircuitState(0,0);
     Insect.Reset(0, 0, 0);
-    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_19.dat" /*, ios::app*/);
+    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_20.dat" /*, ios::app*/);
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
         for (int i = 0; i <=5; i++) {
