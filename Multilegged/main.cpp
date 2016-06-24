@@ -326,10 +326,14 @@ int main(int seed, char* argv[])
 
     // Configure the search
 <<<<<<< HEAD
+<<<<<<< HEAD
     s.SetRandomSeed(seed);
 =======
     s.SetRandomSeed(20001);
 >>>>>>> f8047a75152a8628b8b7291f34dec018f49b7ee4
+=======
+    s.SetRandomSeed(30001);
+>>>>>>> be0fe1790868cd9cd41548956fb003faa53e7189
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
@@ -368,7 +372,7 @@ int main(int seed, char* argv[])
     // Run the agent
     Insect.NervousSystem.RandomizeCircuitState(0,0);
     Insect.Reset(0, 0, 0);
-    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_20.dat" /*, ios::app*/);
+    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_21.dat" /*, ios::app*/);
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
         for (int i = 0; i <=5; i++) {
