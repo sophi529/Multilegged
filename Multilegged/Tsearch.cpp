@@ -360,7 +360,7 @@ void TSearch::DoSearch(int ResumeFlag)
 
 // Execute a search
 
-void TSearch::ExecuteSearch(void)
+void TSearch::ExecuteSearch()
 {
     DoSearch(0);
 }
@@ -448,17 +448,14 @@ void TSearch::UpdatePopulationStatistics(void)
 
 void TSearch::DisplayPopulationStatistics(void)
 {
-    ofstream xlev;
-    xlev.open ("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/25.dat", ios::app);
+    
     if (PopulationStatisticsDisplayFunction != NULL)
         (*PopulationStatisticsDisplayFunction)(Gen,BestPerf,AvgPerf,PerfVar);
     else {
-        xlev << Gen << " " << BestPerf << " ";
-         xlev << AvgPerf << " " << PerfVar << endl;
-        cout << Gen << ", " << BestPerf << ", " << AvgPerf << ", " << PerfVar << endl;
-        //xlev << Gen << ", " << BestPerf << ", " << AvgPerf << ", " << PerfVar << endl;
+        cout << Gen << " " << BestPerf << " ";
+         cout  << AvgPerf << " " << PerfVar << endl;
+                //xlev << Gen << ", " << BestPerf << ", " << AvgPerf << ", " << PerfVar << endl;
     }
-    xlev.close();
 }
 
 /*
@@ -490,7 +487,7 @@ void TSearch::DisplaySearchResults(void)
 // as when the checkpoint file was saved, because function pointers are not saved in the
 // checkpoint file
 
-void TSearch::ResumeSearch(void)
+void TSearch::ResumeSearch()
 {
     // Restore the saved search object
     ReadCheckpointFile();

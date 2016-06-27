@@ -1,4 +1,10 @@
 //
+
+
+/************************************************************/
+// randomize everything in the beginning
+// i changed the bracketing in leggedagent--rerun to see if that helped
+/************************************************************/
 //  main.cpp
 //  one_legged_walker
 //
@@ -23,7 +29,7 @@
 #include "Leg.hpp"
 #include "CTRNN.h"
 #include "Random.hpp"
-#include <iostream>
+//#include <iostream>
 #include <fstream>
 #include "VectorMatrix.h"
 #include "Tsearch.hpp"
@@ -51,7 +57,7 @@ double vector_fill = 2;
 
 
 /*double*/int vector_size = (neuron_num * neuron_num) + (2 * neuron_num);
-int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) /*+ 4*/;
+int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 6;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -91,7 +97,7 @@ double max_weight = 10;
      
      int vi = 1;
      int vim = 1;
-     /*
+     
   if (Model1)
       
   {for(int i = 1;i <= onelegneuron_num;i++)
@@ -119,7 +125,7 @@ double max_weight = 10;
       }
   }
      
-  else*/
+  else
   {for(int i = 1;i <= neuron_num;i++)
  NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));
  
@@ -153,7 +159,7 @@ double max_weight = 10;
      //copy one set of connection weights for each leg
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi/*m*/++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vim++], min_weight, max_weight));
              
              NervousSystem.SetConnectionWeight(leg2[i], leg2[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
              NervousSystem.SetConnectionWeight(leg3[i], leg3[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
@@ -166,9 +172,29 @@ double max_weight = 10;
      
 
      
-     //the legs dont have any connections to one another
+     //test connections 1
      if (Model1) {
-         return;
+         for(int i = 0;i <= onelegneuron_num - 1;i++){
+             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
+         }
+         
+         for(int i = 0;i <= onelegneuron_num - 1;i++){
+             NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg6[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
+             NervousSystem.SetConnectionWeight(leg5[i], leg4[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
+             NervousSystem.SetConnectionWeight(leg4[i], leg5[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg5[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg5[i], leg6[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+          
+         }
+
      }
      
      //the legs are completely interconnected (contra and ipsalaterally)
@@ -304,16 +330,16 @@ double evaluate(TVector<double> &v, RandomState &r){
 }
 
 
-//int main(int argc, char* argv[])
-int main(int seed, string filename_walk, string filename)
+int main(int argc, char* argv[])
+//int main(int seed)
 {
-    //
+    
+    int seed = atoi(argv[1]);
+    string walk = argv[2];
+    string info = argv[3];
+    
     LeggedAgent Insect;
-    //seed = 2342;
-    //
-    
-    
-    
+
     TSearch s(2);
  
  
@@ -325,17 +351,12 @@ int main(int seed, string filename_walk, string filename)
     //cout << s.VectorSize() << endl;
 
     // Configure the search
-<<<<<<< HEAD
-    s.SetRandomSeed(60001);
-=======
+
 
 
     s.SetRandomSeed(seed);
 
 
-    //s.SetRandomSeed(40001);
-
->>>>>>> 5a3266caf2c333d917f639701eeaf4bb604559ac
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
@@ -352,7 +373,6 @@ int main(int seed, string filename_walk, string filename)
    
     // Run the search
     s.ExecuteSearch();
-
 
 
     //
@@ -372,9 +392,12 @@ int main(int seed, string filename_walk, string filename)
     //randomize the neuron states. very slightly
 
     // Run the agent
-    Insect.NervousSystem.RandomizeCircuitState(0,0);
-    Insect.Reset(0, 0, 0);
-    ofstream xl("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk_25.dat");
+    Insect.NervousSystem.RandomizeCircuitState(0,0.1);
+    Insect.Reset(0, 0, 1);
+    
+    
+    ofstream walkstream;
+    walkstream.open(walk);
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
         for (int i = 0; i <=5; i++) {
@@ -382,15 +405,24 @@ int main(int seed, string filename_walk, string filename)
             //cout << Insect.LegVec[i].FootX << " " << Insect.LegVec[i].FootY << " ";
             //cout << Insect.LegVec[i].FootState << endl;
             //cout << "LegVec[i].Angle: " << Insect.LegVec[i].Angle << endl;
-            xl << Insect.LegVec[i].JointY <<  " " << Insect.LegVec[i].JointX << " " ;
-            xl << Insect.LegVec[i].FootY << " " << Insect.LegVec[i].FootX << " ";
-            xl << Insect.LegVec[i].FootState << " ";
+            walkstream << Insect.LegVec[i].JointY <<  " " << Insect.LegVec[i].JointX << " " ;
+            walkstream << Insect.LegVec[i].FootY << " " << Insect.LegVec[i].FootX << " ";
+            walkstream << Insect.LegVec[i].FootState << " ";
     }
-        xl << endl;
+        walkstream << endl;
+        
+       
     }
+    ofstream infostream;
+    infostream.open(info);
+    infostream << "Seed: " << seed << endl;
+    infostream << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+     walkstream.close();
+    infostream.close();
     
     // Display the fitness
     cout << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+    cout << "Random seed: " << seed << endl;
     //xl << "Average velocity = " << Insect.LegVec[0].JointY/RunDuration << endl;
     //xl.close();
     

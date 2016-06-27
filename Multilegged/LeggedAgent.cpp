@@ -19,11 +19,9 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce = /*0.05*/ 0.008;
+const double MaxLegForce = /*0.05*/ /*0.008*/0.001;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
-//const double NegativeForwardAngleLimit = (5*Pi)/6;
-//const double NegativeBackwardAngleLimit = (-5*Pi)/6;
 const double MaxVelocity = 6.0;
 const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
@@ -154,24 +152,6 @@ void LeggedAgent::Step(double StepSize)
 void LeggedAgent::ForceOutput()
 {
     double force = 0.0;
-    //six-legged walker
-    /*
-    for (int i = 0; i <=inum; i++) {
-        
-        for(int k = 7; k <= 18; j++){
-            
-            LegVec[i].ForwardForce = NervousSystem.NeuronOutput(k) * MaxLegForce;
-            LegVec[i].BackwardForce = NervousSystem.NeuronOutput(k) * MaxLegForce;
-        }
-        double f = LegVec[i].ForwardForce - LegVec[i].BackwardForce;
-        if (LegVec[i].FootState == 1.0)
-            if ((LegVec[i].Angle >= BackwardAngleLimit && LegVec[i].Angle <= ForwardAngleLimit) ||
-                (LegVec[i].Angle < BackwardAngleLimit && f < 0) ||
-                (LegVec[i].Angle > ForwardAngleLimit && f > 0))
-                force += f;
-    }
-    NetForce = force;
-     */
     
     
         vector<vector<int>> doublevec;
@@ -335,11 +315,13 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
             vx = 0.0;}
      */
     // otherwise everything is chill and we can update the velocity
+
     
+
     else if (NetForce == 0)
-        vx = 0;
+    {vx = 0;
         if (vx < -MaxVelocity) vx = -MaxVelocity;
-        if (vx > MaxVelocity) vx = MaxVelocity;
+        if (vx > MaxVelocity) vx = MaxVelocity;}
     else
     {
             vx = vx + StepSize * NetForce;
