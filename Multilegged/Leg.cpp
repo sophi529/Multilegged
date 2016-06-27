@@ -52,11 +52,12 @@ int j = 0;
  */
 // Step the insect using a general CTRNN CPG
 
+/*
 bool TLeg::ConstraintViolation()
 {
     return (JointY - FootY > 20);
 }
-
+*/
 
 // Update the leg geometry //this is one leg!!!
 void TLeg::UpdateLeg(double StepSize, double vx)
@@ -74,6 +75,10 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         if (Angle < BackwardAngleLimit) {Angle = BackwardAngleLimit; Omega = 0;}
         //cout << "Angle < BackwardAngleLimit" << endl;}
         if (Angle > ForwardAngleLimit) {Angle = ForwardAngleLimit; Omega = 0;}
+   /**changed**/
+        //if (Omega < -MaxOmega) {Omega = -MaxOmega;}
+        //cout << "Omega < -MaxOmega" << endl;}
+        //if (Omega > MaxOmega) {Omega = MaxOmega;}
         //FootX = JointX + LegLength * /*sin(Angle)*/cos(Angle);
         //FootY = JointY + LegLength * /*cos(Angle)*/sin(Angle);
         
