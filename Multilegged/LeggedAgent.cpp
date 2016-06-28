@@ -19,7 +19,8 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce = /*0.05*/ /*0.008*/0.001;
+const double MaxLegForce6 = /*0.05*/ /*0.008*/0.008;
+const double MaxLegForce1 = 0.05;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
 const double MaxVelocity = 6.0;
@@ -27,7 +28,7 @@ const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
 double StepSize = 0.1;
 int inum = 5;
-int neuron_num_oneleg = 3;
+int neuron_num_oneleg = 5;
 
 
 // *******
@@ -79,7 +80,8 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
             if (randomize) LegVec[i].Angle = UniformRandom(BackwardAngleLimit,ForwardAngleLimit);
             else LegVec[i].Angle = ForwardAngleLimit;
             //else LegVec[i].Angle = 0;
-        LegVec[i].Omega = LegVec[i].ForwardForce = LegVec[i].BackwardForce = 0.0;
+        LegVec[i].Omega = LegVec[i].LegForwardForce = LegVec[i].LegBackwardForce = 0.0;
+        LegVec[i].Omega = LegVec[i].BodyForwardForce = LegVec[i].BodyBackwardForce = 0.0;
         
         LegVec[i].JointY = cy + LegVec[i].jointplacey;
         LegVec[i].JointX = cx + LegVec[i].jointplacex;
@@ -108,7 +110,8 @@ void LeggedAgent::Reset(double ix, double iy, int randomize, RandomState &rs)
         if (randomize) LegVec[i].Angle = UniformRandom(BackwardAngleLimit,ForwardAngleLimit);
         else LegVec[i].Angle = ForwardAngleLimit;
         //else LegVec[i].Angle = 0;
-        LegVec[i].Omega = LegVec[i].ForwardForce = LegVec[i].BackwardForce = 0.0;
+        LegVec[i].Omega = LegVec[i].LegForwardForce = LegVec[i].LegBackwardForce = 0.0;
+        LegVec[i].Omega = LegVec[i].BodyForwardForce = LegVec[i].BodyBackwardForce = 0.0;
         
         LegVec[i].JointY = cy + LegVec[i].jointplacey;
         LegVec[i].JointX = cx + LegVec[i].jointplacex;
@@ -170,14 +173,13 @@ void LeggedAgent::ForceOutput()
 
     for (int i = 0; i <= inum; i++) {
        
-        LegVec[i].ForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce;
-        LegVec[i].BackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce;
+        LegVec[i].LegForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce1;
+        LegVec[i].LegBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce1;
+        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][3]) * MaxLegForce6;
+        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][4]) * MaxLegForce6;
         }
 
-    for (int i = 0; i <= inum; i++) {
-    if (LegVec[i].FootState == 1.0 && LegVec[i].Angle >= BackwardAngleLimit && LegVec[i].Angle <= ForwardAngleLimit)
-        force += MaxLegForce;
-    }
+
  /*
     //multi-legged walker without evolved cpg
     for (int i = 0; i <=inum; i++) {
@@ -192,10 +194,10 @@ void LeggedAgent::ForceOutput()
         //cout << "Foot state: " << LegVec[i].FootState << endl;
         //cout << "Neuron 1 output: " << NervousSystem.NeuronOutput(1) << endl;
     
-    //BRING BACK
+
     
     for (int i = 0; i <=inum; i++) {
-    double f = LegVec[i].ForwardForce - LegVec[i].BackwardForce;
+    double f = LegVec[i].BodyForwardForce - LegVec[i].BodyBackwardForce;
         if (LegVec[i].FootState == 1.0)
             if ((LegVec[i].Angle >= BackwardAngleLimit && LegVec[i].Angle <= ForwardAngleLimit) ||
                 (LegVec[i].Angle < BackwardAngleLimit && f < 0) ||

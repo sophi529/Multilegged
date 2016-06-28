@@ -1,0 +1,3 @@
+Seed: 42434445
+Average velocity = -0.0357587
+Added separate variables for the leg during the swing phase and during the stance phase. legmaxforce and bodymaxforce. the maximum force each leg can exert on the body is lower than the maximum force it can exert on itself

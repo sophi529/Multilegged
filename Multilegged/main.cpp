@@ -2,8 +2,7 @@
 
 
 /************************************************************/
-// randomize everything in the beginning
-// i changed the bracketing in leggedagent--rerun to see if that helped
+
 /************************************************************/
 //  main.cpp
 //  one_legged_walker
@@ -24,7 +23,11 @@
 // 8/27/94	Created
 // 5/25/02  Revised for OS X
 // *************************************************************
+//TALK: THE PROBLEM MAY BE THAT THE LEG FORCE IS SO LOW THAT IN THE SWING STATE IT TAKES TOO LONG TO SWING ALL OF THE WAY SO IT'S EASIER TO USE THE BUILT-IN CONSTRAINTS AND AUTOMATICALLY HAVE THE LEG SNAP BACK
 
+//TALK: NOW I CAN CHANGE THE FORCE IN LEG TO BE FORWARD - BACKWARD INSTEAD OF THE OTHER WAY AROUND. PROB WONT CHANGE ANYTHING AT THIS POINT BUT WORTH A SHOT
+
+//TALK: I CANT HAVE THE SAME NEURONS CONTROLLING BOTH BODY AND FOOT FORCES I HAVE TO HAVE DIFFERENT NEURONS WHICH MEANS ADDING IN 12 MORE NEURONS TO THE NERVOUS SYSTEM IS THAT REALLY NECESSARY? BUT I FEEL LIKE IT WOULD WORK...
 
 #include "LeggedAgent.hpp"
 #include "Leg.hpp"
@@ -51,9 +54,9 @@ const bool Model4 = false;
 
 
 
-//vector created
-int neuron_num = 18;
-int onelegneuron_num = 3;
+//CHANGED
+int neuron_num = /*18*/30;
+int onelegneuron_num = /*3*/5;
 double vector_fill = 2;
 
 
@@ -319,13 +322,13 @@ double evaluate(TVector<double> &v, RandomState &r){
     Assign_params(v, Insect.NervousSystem);
     Insect.NervousSystem.RandomizeCircuitState(0,0,r);
     
-    
+    //TALK: THE ONLY THING I CHANGED WAS RANDOMIZING EVERYTHING for 52-54
     Insect.Reset(0, 0, 0, r);
 
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
     }
-
+//if fitness is negative return 0
     return Insect.LegVec[3].JointY/RunDuration;
     
 }
@@ -341,6 +344,7 @@ int main(int argc, char* argv[])
     
     LeggedAgent Insect;
 
+    
     TSearch s(2);
  
  
@@ -362,8 +366,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(300);
-    s.SetMaxGenerations(2500);
+    s.SetPopulationSize(100);
+    s.SetMaxGenerations(2000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -418,6 +422,7 @@ int main(int argc, char* argv[])
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+    infostream << "Adding two new neurons to control the force of the leg in the swing state. let's see if it works" << endl;
      walkstream.close();
     infostream.close();
     

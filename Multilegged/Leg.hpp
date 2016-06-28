@@ -21,7 +21,7 @@ public:
     
     // Accessors
     
-    double Angle, Omega, ForwardForce, BackwardForce;
+    double Angle, Omega, LegForwardForce, LegBackwardForce, BodyForwardForce, BodyBackwardForce;
     double FootX, FootY, JointX, JointY;
     double jointplacex, jointplacey;
     double FootState;

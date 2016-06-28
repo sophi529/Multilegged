@@ -76,9 +76,9 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         //cout << "Angle < BackwardAngleLimit" << endl;}
         if (Angle > ForwardAngleLimit) {Angle = ForwardAngleLimit; Omega = 0;}
    /**changed**/
-        //if (Omega < -MaxOmega) {Omega = -MaxOmega;}
+        if (Omega < -MaxOmega) {Omega = -MaxOmega;}
         //cout << "Omega < -MaxOmega" << endl;}
-        //if (Omega > MaxOmega) {Omega = MaxOmega;}
+        if (Omega > MaxOmega) {Omega = MaxOmega;}
         //FootX = JointX + LegLength * /*sin(Angle)*/cos(Angle);
         //FootY = JointY + LegLength * /*cos(Angle)*/sin(Angle);
         
@@ -86,7 +86,9 @@ void TLeg::UpdateLeg(double StepSize, double vx)
     else {
         //JointY = JointY + StepSize * vx;
         //vx = 0;
-        Omega = Omega + StepSize * MaxTorque * (BackwardForce - ForwardForce);
+        
+        //OMEGA CHANGED
+        Omega = Omega + StepSize * MaxTorque * (LegForwardForce - LegBackwardForce);
         /*
         cout << " " << endl;
         cout << "Backward Force: " << BackwardForce << endl;
