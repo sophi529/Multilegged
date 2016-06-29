@@ -17,6 +17,7 @@
 
 
 #include "Random.hpp"
+#include <cmath>
 // load coasting circuit into old one legged body
 // try in multilegged body print out time steps
 
@@ -68,9 +69,12 @@ void TLeg::UpdateLeg(double StepSize, double vx)
     //cout << "Step Size: " << StepSize << endl;
     //cout << "vx: " << vx << endl;
     if (FootState == 1.0) {
-        
-        double angle = atan2(FootY - JointY, FootX - JointX);
-        Omega = (angle - Angle)/StepSize;
+        double angle;
+        if (signbit(JointX)){
+            angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
+        }
+        else{
+            angle = atan2(FootY-JointY,FootX-JointX);}        Omega = (angle - Angle)/StepSize;
         Angle = angle;
         if (Angle < BackwardAngleLimit) {Angle = BackwardAngleLimit; Omega = 0;}
         //cout << "Angle < BackwardAngleLimit" << endl;}
@@ -106,7 +110,7 @@ void TLeg::UpdateLeg(double StepSize, double vx)
             //cout << "Angle < BackwardAngleLimit" << endl;}
         if (Angle > ForwardAngleLimit) {Angle = ForwardAngleLimit; Omega = 0;}
             //cout << "Angle > ForwardAngleLimit" << endl;}
-        if signbit(JointX){
+        if (signbit(JointX)){
             //Foot X-left
             FootX = JointX - LegLength * cos(Angle);}
         else{
