@@ -74,7 +74,8 @@ void TLeg::UpdateLeg(double StepSize, double vx)
             angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
         }
         else{
-            angle = atan2(FootY-JointY,FootX-JointX);}        Omega = (angle - Angle)/StepSize;
+            angle = atan2(FootY-JointY,FootX-JointX);}
+        Omega = (angle - Angle)/StepSize;
         Angle = angle;
         if (Angle < BackwardAngleLimit) {Angle = BackwardAngleLimit; Omega = 0;}
         //cout << "Angle < BackwardAngleLimit" << endl;}
