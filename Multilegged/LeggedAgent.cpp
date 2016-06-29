@@ -19,7 +19,7 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce6 = /*0.05*/ /*0.008*/0.008;
+const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
 const double MaxLegForce1 = 0.05;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
@@ -175,8 +175,8 @@ void LeggedAgent::ForceOutput()
        
         LegVec[i].LegForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce1;
         LegVec[i].LegBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce1;
-        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][3]) * MaxLegForce6;
-        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][4]) * MaxLegForce6;
+        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce6;
+        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce6;
         }
 
 

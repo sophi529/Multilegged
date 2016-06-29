@@ -55,13 +55,13 @@ const bool Model4 = false;
 
 
 //CHANGED
-int neuron_num = /*18*/30;
-int onelegneuron_num = /*3*/5;
+int neuron_num = 30;
+int onelegneuron_num = 5;
 double vector_fill = 2;
 
 
 /*double*/int vector_size = (neuron_num * neuron_num) + (2 * neuron_num);
-int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 6;
+int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 12;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -329,7 +329,7 @@ double evaluate(TVector<double> &v, RandomState &r){
         Insect.Step(StepSize);
     }
 //if fitness is negative return 0
-    return Insect.LegVec[3].JointY/RunDuration;
+    return Insect.LegVec[2].JointY/RunDuration;
     
 }
 
@@ -349,10 +349,10 @@ int main(int argc, char* argv[])
  
  
     //if(Model1)
-    //    s.SetVectorSize(vector_size_Model1);
+        s.SetVectorSize(vector_size_Model1);
     //else
  
-        s.SetVectorSize(vector_size);
+        //s.SetVectorSize(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
@@ -421,13 +421,13 @@ int main(int argc, char* argv[])
     ofstream infostream;
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
-    infostream << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+    infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "Adding two new neurons to control the force of the leg in the swing state. let's see if it works" << endl;
      walkstream.close();
     infostream.close();
     
     // Display the fitness
-    cout << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+    cout << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     cout << "Random seed: " << seed << endl;
     //xl << "Average velocity = " << Insect.LegVec[0].JointY/RunDuration << endl;
     //xl.close();
