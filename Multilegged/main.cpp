@@ -340,7 +340,7 @@ double evaluate(TVector<double> &v, RandomState &r){
     if (Insect.LegVec[2].JointY/RunDuration <= 0)
         return 0;
     else
-        return Insect.LegVec[2].JointY/RunDuration <= 0;
+        return Insect.LegVec[2].JointY/RunDuration;
 
     
 }
