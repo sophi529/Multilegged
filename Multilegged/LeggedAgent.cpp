@@ -178,7 +178,10 @@ void LeggedAgent::ForceOutput()
         LegVec[i].LegBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce1;
         LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce6;
         LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce6;
+        
+        
     }
+
 
 
  /*

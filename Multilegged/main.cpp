@@ -51,13 +51,15 @@ const bool Model4 = false;
 
 
 //CHANGED
-int neuron_num = 18;
-int onelegneuron_num = 3;
+
+int neuron_num = 30;
+int onelegneuron_num = 5;
+
 double vector_fill = 2;
 
 
 /*double*/int vector_size = (neuron_num * neuron_num) + (2 * neuron_num);
-int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 6;
+int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 12;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -334,10 +336,12 @@ double evaluate(TVector<double> &v, RandomState &r){
     }
     
 //if fitness is negative return 0
+
     if (Insect.LegVec[2].JointY/RunDuration <= 0)
         return 0;
     else
         return Insect.LegVec[2].JointY/RunDuration <= 0;
+
     
 }
 
@@ -433,6 +437,7 @@ int main(int argc, char* argv[])
     infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "I INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE" << endl;
+
      walkstream.close();
     infostream.close();
     
