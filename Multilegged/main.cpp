@@ -324,10 +324,10 @@ double evaluate(TVector<double> &v, RandomState &r){
     
     Assign_params(v, Insect.NervousSystem);
     
-    Insect.NervousSystem.RandomizeCircuitState(0,0,r);
+    Insect.NervousSystem.RandomizeCircuitState(0,0.1,r);
    
-    //TALK: THE ONLY THING I CHANGED WAS RANDOMIZING EVERYTHING for 52-54
-    Insect.Reset(0, 0, 0, r);
+
+    Insect.Reset(0, 0, 1, r);
  
     for (double time = 0; time < RunDuration; time += StepSize) {
         
