@@ -350,9 +350,9 @@ int main(int argc, char* argv[])
 //int main(int seed)
 {
     
-    int seed = /*atoi(argv[1])*/ 43444546;
-    string walk = /*argv[2]*/"/Users/sophi529/Documents/Non\ college/2016\ Summer/Indiana/Lab\ stuff/CTRNN/MultiLeggedWalker/testing/sixlegtest/walk/walk_68.dat";
-    string info = /*argv[3]*/"/Users/sophi529/Documents/Non\ college/2016\ Summer/Indiana/Lab\ stuff/CTRNN/MultiLeggedWalker/testing/sixlegtest/info/68.dat";
+    int seed = atoi(argv[1]);
+    string walk = argv[2];
+    string info = argv[3];
     
     LeggedAgent Insect;
 

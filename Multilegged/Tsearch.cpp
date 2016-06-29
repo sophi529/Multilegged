@@ -457,9 +457,7 @@ void TSearch::DisplayPopulationStatistics(void)
     else {
         cout << Gen << " " << BestPerf << " ";
          cout  << AvgPerf << " " << PerfVar << endl;
-        ofstream xl("/Users/sophi529/Documents/Non college/2016 Summer/Indiana/Lab stuff/evolution1.csv");
-        xl << Gen << ", " << BestPerf << ", " << AvgPerf << ", " <<PerfVar << endl;
-                //xlev << Gen << ", " << BestPerf << ", " << AvgPerf << ", " << PerfVar << endl;
+        
     }
 }
 
