@@ -23,11 +23,7 @@
 // 8/27/94	Created
 // 5/25/02  Revised for OS X
 // *************************************************************
-//TALK: THE PROBLEM MAY BE THAT THE LEG FORCE IS SO LOW THAT IN THE SWING STATE IT TAKES TOO LONG TO SWING ALL OF THE WAY SO IT'S EASIER TO USE THE BUILT-IN CONSTRAINTS AND AUTOMATICALLY HAVE THE LEG SNAP BACK
-
-//TALK: NOW I CAN CHANGE THE FORCE IN LEG TO BE FORWARD - BACKWARD INSTEAD OF THE OTHER WAY AROUND. PROB WONT CHANGE ANYTHING AT THIS POINT BUT WORTH A SHOT
-
-//TALK: I CANT HAVE THE SAME NEURONS CONTROLLING BOTH BODY AND FOOT FORCES I HAVE TO HAVE DIFFERENT NEURONS WHICH MEANS ADDING IN 12 MORE NEURONS TO THE NERVOUS SYSTEM IS THAT REALLY NECESSARY? BUT I FEEL LIKE IT WOULD WORK...
+//I FIXED THE NUMBER IN THE SEARCH VECTOR AND INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE
 
 #include "LeggedAgent.hpp"
 #include "Leg.hpp"
@@ -55,8 +51,8 @@ const bool Model4 = false;
 
 
 //CHANGED
-int neuron_num = /*18*/30;
-int onelegneuron_num = /*3*/5;
+int neuron_num = 18;
+int onelegneuron_num = 3;
 double vector_fill = 2;
 
 
@@ -101,7 +97,7 @@ double max_weight = 10;
      
      int vi = 1;
      int vim = 1;
-     
+
   if (Model1)
       
   {for(int i = 1;i <= onelegneuron_num;i++)
@@ -127,6 +123,7 @@ double max_weight = 10;
           NervousSystem.SetNeuronTimeConstant(leg5[i], NervousSystem.NeuronTimeConstant(leg1[i]));
           NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
       }
+
   }
      
   else
@@ -171,6 +168,7 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg5[i], leg5[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
              NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
          }}
+         
      }
      
      
@@ -198,6 +196,7 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
           
          }
+        
 
      }
      
@@ -312,6 +311,7 @@ void DumpCircuit(int, TVector<double> &v)
     
     ofstream f("/Users/sophi529/Desktop/best.ns");
     f << c;
+
 }
 
 double evaluate(TVector<double> &v, RandomState &r){
@@ -319,17 +319,25 @@ double evaluate(TVector<double> &v, RandomState &r){
     LeggedAgent Insect;
     
     Insect.NervousSystem.SetCircuitSize(neuron_num);
-    Assign_params(v, Insect.NervousSystem);
-    Insect.NervousSystem.RandomizeCircuitState(0,0,r);
     
+    Assign_params(v, Insect.NervousSystem);
+    
+    Insect.NervousSystem.RandomizeCircuitState(0,0,r);
+   
     //TALK: THE ONLY THING I CHANGED WAS RANDOMIZING EVERYTHING for 52-54
     Insect.Reset(0, 0, 0, r);
-
+ 
     for (double time = 0; time < RunDuration; time += StepSize) {
+        
         Insect.Step(StepSize);
+       
     }
+    
 //if fitness is negative return 0
-    return Insect.LegVec[3].JointY/RunDuration;
+    if (Insect.LegVec[2].JointY/RunDuration <= 0)
+        return 0;
+    else
+        return Insect.LegVec[2].JointY/RunDuration <= 0;
     
 }
 
@@ -338,9 +346,9 @@ int main(int argc, char* argv[])
 //int main(int seed)
 {
     
-    int seed = atoi(argv[1]);
-    string walk = argv[2];
-    string info = argv[3];
+    int seed = /*atoi(argv[1])*/ 43444546;
+    string walk = /*argv[2]*/"/Users/sophi529/Documents/Non\ college/2016\ Summer/Indiana/Lab\ stuff/CTRNN/MultiLeggedWalker/testing/sixlegtest/walk/walk_68.dat";
+    string info = /*argv[3]*/"/Users/sophi529/Documents/Non\ college/2016\ Summer/Indiana/Lab\ stuff/CTRNN/MultiLeggedWalker/testing/sixlegtest/info/68.dat";
     
     LeggedAgent Insect;
 
@@ -349,10 +357,10 @@ int main(int argc, char* argv[])
  
  
     //if(Model1)
-    //    s.SetVectorSize(vector_size_Model1);
+        s.SetVectorSize(vector_size_Model1);
     //else
  
-        s.SetVectorSize(vector_size);
+        //s.SetVectorSize(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
@@ -367,7 +375,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(100);
-    s.SetMaxGenerations(2000);
+    s.SetMaxGenerations(1000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -375,10 +383,10 @@ int main(int argc, char* argv[])
     s.SetElitistFraction(0.01);
     s.SetSearchConstraint(1);
     s.SetCheckpointInterval(5);
-   
+
     // Run the search
     s.ExecuteSearch();
-
+           
 
     //
  
@@ -403,8 +411,10 @@ int main(int argc, char* argv[])
     
     ofstream walkstream;
     walkstream.open(walk);
+
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
+        
         for (int i = 0; i <=5; i++) {
             //cout << Insect.LegVec[i].JointX << " " << Insect.LegVec[i].JointY << " ";
             //cout << Insect.LegVec[i].FootX << " " << Insect.LegVec[i].FootY << " ";
@@ -421,13 +431,13 @@ int main(int argc, char* argv[])
     ofstream infostream;
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
-    infostream << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
-    infostream << "Adding two new neurons to control the force of the leg in the swing state. let's see if it works" << endl;
+    infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
+    infostream << "I INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE" << endl;
      walkstream.close();
     infostream.close();
     
     // Display the fitness
-    cout << "Average velocity = " << Insect.LegVec[3].JointY/RunDuration << endl;
+    cout << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     cout << "Random seed: " << seed << endl;
     //xl << "Average velocity = " << Insect.LegVec[0].JointY/RunDuration << endl;
     //xl.close();

@@ -19,7 +19,7 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce6 = /*0.05*/ /*0.008*/0.008;
+const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
 const double MaxLegForce1 = 0.05;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
@@ -28,7 +28,7 @@ const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
 double StepSize = 0.1;
 int inum = 5;
-int neuron_num_oneleg = 5;
+int neuron_num_oneleg = 3;
 
 
 // *******
@@ -97,6 +97,7 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         }
         if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1);
         else NervousSystem.RandomizeCircuitState(0.0,0.0);
+    
 }
 
 void LeggedAgent::Reset(double ix, double iy, int randomize, RandomState &rs)
@@ -136,7 +137,7 @@ void LeggedAgent::Step(double StepSize)
         // Update the nervous system
 
     NervousSystem.EulerStep(StepSize);
-    
+
         /*
          // Update the leg effectors
          for (int j = 13; j <= 18; j++) {
@@ -175,9 +176,9 @@ void LeggedAgent::ForceOutput()
        
         LegVec[i].LegForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce1;
         LegVec[i].LegBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce1;
-        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][3]) * MaxLegForce6;
-        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][4]) * MaxLegForce6;
-        }
+        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce6;
+        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce6;
+    }
 
 
  /*
@@ -277,17 +278,20 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
             for (int j = 0; j <= neuron_num_oneleg - 1; j++) {
                 doublevec[i][j] = k++;
             }
+           
         }
- 
+
     for (int i = 0; i <= inum; i++) {
-        
+
         //for (int j = 1; j <= 3; j++) {
-            if (NervousSystem.NeuronOutput(doublevec[i][0]) > 0.5) {LegVec[i].FootState = 1; LegVec[i].Omega = 0;}
+            if (NervousSystem.NeuronOutput(doublevec[i][0]) > 0.5) {LegVec[i].FootState = 1; LegVec[i].Omega = 0; }
             else LegVec[i].FootState = 0;
+       
         //cout << "Neuron output" << NervousSystem.NeuronOutput(1) << endl;
         //cout << "foot state: " << LegVec[i].FootState << endl;
         //}
     }
+
     
     
     //cout << "Neuron output" << NervousSystem.NeuronOutput(1) << endl;

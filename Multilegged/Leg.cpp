@@ -87,8 +87,8 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         //JointY = JointY + StepSize * vx;
         //vx = 0;
         
-        //OMEGA CHANGED
-        Omega = Omega + StepSize * MaxTorque * (LegForwardForce - LegBackwardForce);
+        
+        Omega = Omega + StepSize * MaxTorque * (LegBackwardForce - LegForwardForce);
         /*
         cout << " " << endl;
         cout << "Backward Force: " << BackwardForce << endl;

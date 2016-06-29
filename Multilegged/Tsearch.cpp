@@ -319,9 +319,12 @@ void TSearch::DoSearch(int ResumeFlag)
         cerr << "Error: NULL evaluation function\n";
         exit(0);
     }
+    
     // Unless we're resuming a checkpointed search, evalute the initial population and reset best
     if (!ResumeFlag) {
+        
         EvaluatePopulation();
+        
         BestPerf = -1;
         UpdateBestFlag = 0;
     }
@@ -454,6 +457,8 @@ void TSearch::DisplayPopulationStatistics(void)
     else {
         cout << Gen << " " << BestPerf << " ";
          cout  << AvgPerf << " " << PerfVar << endl;
+        ofstream xl("/Users/sophi529/Documents/Non college/2016 Summer/Indiana/Lab stuff/evolution1.csv");
+        xl << Gen << ", " << BestPerf << ", " << AvgPerf << ", " <<PerfVar << endl;
                 //xlev << Gen << ", " << BestPerf << ", " << AvgPerf << ", " << PerfVar << endl;
     }
 }
@@ -560,8 +565,11 @@ void TSearch::EvaluatePopulation(int start)
             pthread_join(threads[i], (void **)&status);
     }
     else
+        
         for (int i = start; i <= Population.Size(); i++)
+        {
             Perf[i] = EvaluateVector(Population[i], RandomStates[i]);
+        }
     
 #else // Evaluate the population serially
     for (int i = start; i <= Population.Size(); i++)
