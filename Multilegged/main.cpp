@@ -370,7 +370,7 @@ int main(int argc, char* argv[])
 
 
 
-    s.SetRandomSeed(646566);
+    s.SetRandomSeed(65666768);
 
 
     s.SetEvaluationFunction(evaluate);
@@ -433,12 +433,13 @@ int main(int argc, char* argv[])
     }
     ofstream infostream;
     infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_86.dat");
-    infostream << "Seed: " << 636465 << endl;
+    infostream << "Seed: " << 65666768 << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer" << endl;
     infostream << "population size to 300 and max generations to 2000. just in case..." << endl;
     infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
     infostream << "implement balance function" << endl;
+    infostream << "using foot y = joint y -... like the other code" << endl;
 
 
      walkstream.close();
@@ -446,7 +447,7 @@ int main(int argc, char* argv[])
     
     // Display the fitness
     cout << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    cout << "Random seed: " << 636465 << endl;
+    cout << "Random seed: " << 65666768 << endl;
     //xl << "Average velocity = " << Insect.LegVec[0].JointY/RunDuration << endl;
     //xl.close();
     
