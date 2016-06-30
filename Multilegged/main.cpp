@@ -370,15 +370,15 @@ int main(int argc, char* argv[])
 
 
 
-    s.SetRandomSeed(65666768);
+    s.SetRandomSeed(66676869);
 
 
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(100);
-    s.SetMaxGenerations(1000);
+    s.SetPopulationSize(300);
+    s.SetMaxGenerations(2000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -413,7 +413,7 @@ int main(int argc, char* argv[])
     
     
     ofstream walkstream;
-    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk/walk_86.dat");
+    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk/walk_87.dat");
 
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
@@ -432,7 +432,7 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_86.dat");
+    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_87.dat");
     infostream << "Seed: " << 65666768 << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer" << endl;

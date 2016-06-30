@@ -457,7 +457,7 @@ void TSearch::DisplayPopulationStatistics(void)
         (*PopulationStatisticsDisplayFunction)(Gen,BestPerf,AvgPerf,PerfVar);
     else {
         
-        num.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/num/86.dat");
+        num.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/num/87.dat");
         num << Gen << " " << BestPerf << " ";
         num  << AvgPerf << " " << PerfVar << endl;
         cout << Gen << " " << BestPerf << " ";
