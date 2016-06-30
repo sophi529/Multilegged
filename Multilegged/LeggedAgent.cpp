@@ -20,7 +20,7 @@
 
 const int    LegLength = 15;
 const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
-const double MaxLegForce1 = 0.05;
+const double MaxLegForce1 = 0.2;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
 const double MaxVelocity = 6.0;
@@ -88,12 +88,14 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         
         if signbit(LegVec[i].JointX){
             //Foot X-left
-            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);}
+            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
         else{
             //Foot X-right
-            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);}
+            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
             //Foot Y
-        LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);
+        
         }
         if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1);
         else NervousSystem.RandomizeCircuitState(0.0,0.0);
@@ -320,26 +322,30 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         //for (int i = 0; i <= inum; i++) {
             //LegVec[i].UpdateLeg(StepSize, vx);
         //}
+        
     }
     // if there are less than 3 feet on the ground it falls
-    /*
+    
     else if (vertx.size() < 3)
-    {vx = 0.0;
-        cout << "boomsmall" << endl;}
+    vx = 0.0;
+        //cout << "boomsmall" << endl;}
     // if the center of gravity is outside of the feet (return 0) it falls
     else if (vertx.size() > 2 && vertx.size() < 5)
         {if (pnpoly() == 0)
-            cout << "boom" << endl;
+            
             vx = 0.0;}
-     */
+     
     // otherwise everything is chill and we can update the velocity
 
     
-
+//get rid of this TALK
+    /*
     else if (NetForce == 0)
-    {vx = 0;
+    {
+        vx = 0;
         if (vx < -MaxVelocity) vx = -MaxVelocity;
         if (vx > MaxVelocity) vx = MaxVelocity;}
+     */
     else
     {
             vx = vx + StepSize * NetForce;
@@ -359,8 +365,8 @@ int LeggedAgent::pnpoly()
 {
     
     int nvert = 6;
-    double testx = 0.0;
-    double testy = 0.0;
+    double testx = 0;
+    double testy = LegVec[2].JointY;
     
     int i, j, c = 0;
     for (i = 0, j = nvert-1; i < nvert; j = i++) {
