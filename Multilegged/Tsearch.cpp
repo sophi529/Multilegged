@@ -451,14 +451,20 @@ void TSearch::UpdatePopulationStatistics(void)
 
 void TSearch::DisplayPopulationStatistics(void)
 {
+    ofstream num;
     
     if (PopulationStatisticsDisplayFunction != NULL)
         (*PopulationStatisticsDisplayFunction)(Gen,BestPerf,AvgPerf,PerfVar);
     else {
+        
+        num.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/num/85.dat");
+        num << Gen << " " << BestPerf << " ";
+        num  << AvgPerf << " " << PerfVar << endl;
         cout << Gen << " " << BestPerf << " ";
          cout  << AvgPerf << " " << PerfVar << endl;
         
     }
+    num.close();
 }
 
 /*

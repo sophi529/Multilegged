@@ -334,6 +334,8 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         {if (pnpoly() == 0)
             
             vx = 0.0;}
+    else if (!balance())
+        vx = 0.0;
      
     // otherwise everything is chill and we can update the velocity
 
@@ -376,6 +378,14 @@ int LeggedAgent::pnpoly()
     }
     //cout << c << endl;
     return c;
+}
+
+int LeggedAgent::balance()
+{
+    if((LegVec[0].FootState == 0 && LegVec[5].FootState == 0 && LegVec[4].FootState == 0) || (LegVec[1].FootState == 0 && LegVec[2].FootState == 0 && LegVec[3].FootState == 0))
+        return 0;
+    else
+        return 1;
 }
 
 void LeggedAgent::GetFoot()

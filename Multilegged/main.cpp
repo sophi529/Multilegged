@@ -357,11 +357,11 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(2);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
-        s.SetVectorSize(vector_size_Model1);
+        //s.SetVectorSize(vector_size_Model1);
     //else
         //s.SetVectorSize(vector_size);
     //cout << s.VectorSize() << endl;
@@ -370,7 +370,7 @@ int main(int argc, char* argv[])
 
 
 
-    s.SetRandomSeed(636465);
+    s.SetRandomSeed(646566);
 
 
     s.SetEvaluationFunction(evaluate);
@@ -413,7 +413,7 @@ int main(int argc, char* argv[])
     
     
     ofstream walkstream;
-    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk/walk_84.dat");
+    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk/walk_85.dat");
 
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
@@ -432,12 +432,13 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_84.dat");
+    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_85.dat");
     infostream << "Seed: " << 636465 << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer" << endl;
     infostream << "population size to 300 and max generations to 2000. just in case..." << endl;
     infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
+    infostream << "implement balance function" << endl;
 
 
      walkstream.close();
