@@ -324,10 +324,10 @@ double evaluate(TVector<double> &v, RandomState &r){
     
     Assign_params(v, Insect.NervousSystem);
     
-    Insect.NervousSystem.RandomizeCircuitState(0,0.1,r);
+    Insect.NervousSystem.RandomizeCircuitState(0,0,r);
    
 
-    Insect.Reset(0, 0, 1, r);
+    Insect.Reset(0, 0, 0, r);
  
     for (double time = 0; time < RunDuration; time += StepSize) {
         
@@ -378,8 +378,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(100);
-    s.SetMaxGenerations(1000);
+    s.SetPopulationSize(300);
+    s.SetMaxGenerations(2000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -436,7 +436,8 @@ int main(int argc, char* argv[])
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    infostream << "I INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE" << endl;
+    infostream << "increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer" << endl;
+    infostream << "population size to 300 and max generations to 2000. just in case..." << endl;
 
      walkstream.close();
     infostream.close();

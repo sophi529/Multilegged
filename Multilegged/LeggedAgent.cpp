@@ -20,7 +20,7 @@
 
 const int    LegLength = 15;
 const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
-const double MaxLegForce1 = 0.05;
+const double MaxLegForce1 = 0.2;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
 const double MaxVelocity = 6.0;
@@ -88,12 +88,14 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         
         if signbit(LegVec[i].JointX){
             //Foot X-left
-            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);}
+            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
         else{
             //Foot X-right
-            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);}
+            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
             //Foot Y
-        LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);
+        
         }
         if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1);
         else NervousSystem.RandomizeCircuitState(0.0,0.0);
