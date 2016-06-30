@@ -72,6 +72,7 @@ public:
     void GetFoot();
     void GetLegs();
     int pnpoly();
+    int balance();
     
     double cx, cy, vx;
     
