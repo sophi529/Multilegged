@@ -89,11 +89,11 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         if signbit(LegVec[i].JointX){
             //Foot X-left
             LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
-            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
+            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
         else{
             //Foot X-right
             LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
-            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
+            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
             //Foot Y
         
         }
@@ -126,7 +126,7 @@ void LeggedAgent::Reset(double ix, double iy, int randomize, RandomState &rs)
             //Foot X-right
             LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);}
         //Foot Y
-        LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);
+        LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);
     }
     if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1,rs);
     else NervousSystem.RandomizeCircuitState(0.0,0.0,rs);

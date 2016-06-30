@@ -114,11 +114,11 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         if (signbit(JointX)){
             //Foot X-left
             FootX = JointX - LegLength * cos(Angle);
-            FootY = JointY + LegLength * sin(Angle);}
+            FootY = JointY - LegLength * sin(Angle);}
         else{
             //Foot X-right
             FootX = JointX + LegLength * cos(Angle);
-            FootY = JointY + LegLength * sin(Angle);}
+            FootY = JointY - LegLength * sin(Angle);}
         //FootX = JointX + LegLength * /*sin(Angle)*/cos(Angle);
         
     }
