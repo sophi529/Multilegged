@@ -72,10 +72,13 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         double angle;
         
         if (signbit(JointX)){
-            angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
+            //angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
+            angle = -atan2(FootY-JointY,JointX-FootX);
         }
         else{
-            angle = atan2(FootY-JointY,FootX-JointX);}
+            //angle = atan2(FootY-JointY,FootX-JointX);
+            angle = -atan2(FootY-JointY,FootX-JointX);
+        }
          
         /*
         if (signbit(JointX)){
