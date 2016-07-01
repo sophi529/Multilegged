@@ -333,7 +333,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 
     if (ConstraintViolation())
     {
-        vx = 0.0;
+        NetForce = 0.0;
         //cout << LegVec[0].JointY - LegVec[0].FootY << endl;
         
         //for (int i = 0; i <= inum; i++) {
