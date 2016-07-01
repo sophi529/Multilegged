@@ -393,7 +393,7 @@ double evaluate(TVector<double> &v, RandomState &r){
     
 }
 
-
+/*
 int main(int argc, char* argv[])
 //int main(int seed)
 {
@@ -405,13 +405,13 @@ int main(int argc, char* argv[])
     
 
     
-    //TSearch s(vector_size_Model1);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
         //s.SetVectorSize(vector_size_Model1);
     //else
-        TSearch s(vector_size);
+        //TSearch s(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
@@ -486,7 +486,7 @@ int main(int argc, char* argv[])
     infostream << " maxforce for the leg in swing state 0.1" << endl;
     infostream << "population size to 150 and max generations to 1500" << endl;
     infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
-    infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
+    infostream << "model 1" << endl;
     infostream << "changed the layout of the connections code-- and fixed the connections code--it was wrong" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
     infostream << "my trig" << endl;
@@ -506,9 +506,9 @@ int main(int argc, char* argv[])
     return 0;
 
 }
+*/
 
 
-/*
 int main()
 {
     TVector<double> testvec;
@@ -523,7 +523,7 @@ int main()
     cout << Insect.NervousSystem;
     return 0;
 }
-*/
+
 
 
 /*
