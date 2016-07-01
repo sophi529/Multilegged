@@ -72,12 +72,11 @@ void TLeg::UpdateLeg(double StepSize, double vx)
         double angle;
         
         if (signbit(JointX)){
-            //angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
-            angle = -atan2(FootY-JointY,JointX-FootX);
-        }
+            angle = atan2(FootY-JointY,(abs(FootX))-(abs(JointX)));
+                   }
         else{
-            //angle = atan2(FootY-JointY,FootX-JointX);
-            angle = -atan2(FootY-JointY,FootX-JointX);
+            angle = atan2(FootY-JointY,FootX-JointX);
+  
         }
          
         /*
@@ -124,25 +123,25 @@ void TLeg::UpdateLeg(double StepSize, double vx)
             //cout << "Angle < BackwardAngleLimit" << endl;}
         if (Angle > ForwardAngleLimit) {Angle = ForwardAngleLimit; Omega = 0;}
             //cout << "Angle > ForwardAngleLimit" << endl;}
+        
+        if (signbit(JointX)){
+            //Foot X-left
+            FootX = JointX - LegLength * cos(Angle);
+            FootY = JointY + LegLength * sin(Angle);}
+        else{
+            //Foot X-right
+            FootX = JointX + LegLength * cos(Angle);
+            FootY = JointY + LegLength * sin(Angle);}
         /*
         if (signbit(JointX)){
             //Foot X-left
             FootX = JointX - LegLength * cos(Angle);
-            FootY = JointY + LegLength * sin(Angle);}
+            FootY = JointY - LegLength * sin(Angle);}
         else{
             //Foot X-right
             FootX = JointX + LegLength * cos(Angle);
-            FootY = JointY + LegLength * sin(Angle);}
+            FootY = JointY - LegLength * sin(Angle);}
         */
-        if (signbit(JointX)){
-            //Foot X-left
-            FootX = JointX - LegLength * cos(Angle);
-            FootY = JointY - LegLength * sin(Angle);}
-        else{
-            //Foot X-right
-            FootX = JointX + LegLength * cos(Angle);
-            FootY = JointY - LegLength * sin(Angle);}
-        
     }
 }
 
