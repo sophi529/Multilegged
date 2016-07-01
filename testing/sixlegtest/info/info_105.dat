@@ -1,0 +1,11 @@
+Seed: 83848586
+Average velocity = 1.17859
+ maxforce for the leg in swing state 0.1
+population size to 150 and max generations to 1500
+get rid of if net force is 0 vx is 0 and implement stability check
+using joint x - joint y and -atan2
+using foot y = joint y - because that makes more sense
+model 2... part of the problem might be because of the connections we're using....
+changed the layout of the connections code-- and fixed the connections code--it was wrong
+copy neuron state no matter what the model
+constraint violation --> netforce = 0

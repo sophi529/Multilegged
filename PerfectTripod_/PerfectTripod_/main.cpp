@@ -451,7 +451,7 @@ int main(int argc, char* argv[])
     infostream << "changed the layout of the connections code" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
     infostream << "tripod method of state switching" << endl;
-        infostream << "velocity decay" << endl;
+        infostream << "no velocity decay" << endl;
     
 
 
