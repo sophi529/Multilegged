@@ -410,13 +410,12 @@ int main(int argc, char* argv[])
     */
     
     ofstream walkstream;
-    walkstream.open("/Users/sophi529/Desktop/output/walk20.dat");
+    walkstream.open("/Users/sophi529/Desktop/output/walk21.dat");
     ofstream help;
-    help.open("/Users/sophi529/Desktop/output/help20.dat");
+    help.open("/Users/sophi529/Desktop/output/help21.dat");
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
-        if(time >= 87 && time <= 120)
-        {help << "time: " << time << endl;
+       help << "time: " << time << endl;
         for (int i = 0; i <= 5; i++) {
         
             help << "Joint Y: " << Insect.LegVec[i].JointY << " ";
@@ -425,9 +424,8 @@ int main(int argc, char* argv[])
             help << "Foot X: " << Insect.LegVec[i].FootX << " ";
             help << "Foot position: " << Insect.LegVec[i].FootState << " ";
             help << "Angle: " << Insect.LegVec[i].Angle << endl;
-        }
-        }
-        for (int i = 0; i <=5; i++) {
+
+
             //cout << Insect.LegVec[i].JointX << " " << Insect.LegVec[i].JointY << " ";
             //cout << Insect.LegVec[i].FootX << " " << Insect.LegVec[i].FootY << " ";
             //cout << Insect.LegVec[i].FootState << endl;
@@ -441,7 +439,7 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/info20.dat");
+    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/info21.dat");
     //infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << " maxforce for the leg in swing state 0.1" << endl;
@@ -453,6 +451,7 @@ int main(int argc, char* argv[])
     infostream << "changed the layout of the connections code" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
     infostream << "tripod method of state switching" << endl;
+        infostream << "velocity decay" << endl;
     
 
 

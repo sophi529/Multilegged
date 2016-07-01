@@ -442,6 +442,7 @@ int main(int argc, char* argv[])
     infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
     infostream << "changed the layout of the connections code" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
+    infostream << "constraint violation --> netforce = 0" << endl;
 
 
 
