@@ -65,8 +65,8 @@ bool TLeg::ConstraintViolation()
 void TLeg::UpdateLeg(double StepSize, double vx)
 {
     
-    if (Angle >= ForwardAngleLimit) {FootState = 1;Omega = 0;}
-    else if(Angle <= BackwardAngleLimit) {FootState = 0;Omega = 0;}
+    //if (Angle >= ForwardAngleLimit) {FootState = 1;Omega = 0;}
+    //else if(Angle <= BackwardAngleLimit) {FootState = 0;Omega = 0;}
     //cout << "Joint Y before: " << JointY << endl;
     JointY = JointY + StepSize * vx;
     //cout << "Joint Y after: " << JointY << endl;
