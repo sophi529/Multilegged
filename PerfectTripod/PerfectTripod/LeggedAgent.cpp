@@ -82,9 +82,9 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
     
     for (int i = 0; i <= inum; i++) {
         if(i == 0 || i == 4 || i == 2)
-            LegVec[i].Angle = ForwardAngleLimit;
-        else
             LegVec[i].Angle = BackwardAngleLimit;
+        else
+            LegVec[i].Angle = ForwardAngleLimit;
     }
     
     for (int i = 0; i <=inum; i++) {
