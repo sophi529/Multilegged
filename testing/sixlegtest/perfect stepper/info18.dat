@@ -8,3 +8,4 @@ model 2... part of the problem might be because of the connections we're using..
 changed the layout of the connections code
 copy neuron state no matter what the model
 tripod method of state switching
+constraint violation was causing the weird middle switching thing. get rid of it and that stops

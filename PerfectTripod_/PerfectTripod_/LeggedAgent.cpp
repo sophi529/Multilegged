@@ -370,14 +370,16 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 
     if (ConstraintViolation())
     {
-        vx = 0.0;
+        NetForce = 0.0;
         //cout << LegVec[0].JointY - LegVec[0].FootY << endl;
         
         //for (int i = 0; i <= inum; i++) {
             //LegVec[i].UpdateLeg(StepSize, vx);
         //}
+        cout << "constraint" << endl;
         
     }
+ 
     // if there are less than 3 feet on the ground it falls
     /*
     else if (vertx.size() < 3)
@@ -404,7 +406,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         if (vx < -MaxVelocity) vx = -MaxVelocity;
         if (vx > MaxVelocity) vx = MaxVelocity;}
      */
-    else
+    //else
     {
             vx = vx + StepSize * NetForce;
             if (vx < -MaxVelocity) vx = -MaxVelocity;
