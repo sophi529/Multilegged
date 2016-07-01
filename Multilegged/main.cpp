@@ -99,10 +99,10 @@ double max_weight = 10;
      
      int vi = 1;
      int vim = 1;
-/*
+
   if (Model1)
       
-  {*/
+  {
  for(int i = 1;i <= onelegneuron_num;i++)
   {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vim++], min_bias, max_bias));}
 
@@ -126,9 +126,9 @@ double max_weight = 10;
           NervousSystem.SetNeuronTimeConstant(leg5[i], NervousSystem.NeuronTimeConstant(leg1[i]));
           NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
       }
-/*
+
   }
- 
+/*
      
   else
   {
@@ -145,6 +145,36 @@ double max_weight = 10;
   }
 */
      
+     else
+     {
+         for(int i = 1;i <= onelegneuron_num;i++)
+         {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));}
+         
+         for(int i = 1;i <= onelegneuron_num;i++) {
+             double tau = MapSearchParameter(v[vi++], min_time, max_time);
+             NervousSystem.SetNeuronTimeConstant(i, tau);
+         }
+         
+         //copy this to all 6 legs
+         for(int i = 0;i <= onelegneuron_num - 1;i++)
+         {NervousSystem.SetNeuronBias(leg2[i], NervousSystem.NeuronBias(leg1[i]));
+             NervousSystem.SetNeuronBias(leg3[i], NervousSystem.NeuronBias(leg1[i]));
+             NervousSystem.SetNeuronBias(leg4[i], NervousSystem.NeuronBias(leg1[i]));
+             NervousSystem.SetNeuronBias(leg5[i], NervousSystem.NeuronBias(leg1[i]));
+             NervousSystem.SetNeuronBias(leg6[i], NervousSystem.NeuronBias(leg1[i]));
+         }
+         for(int i = 0;i <= onelegneuron_num - 1;i++) {
+             NervousSystem.SetNeuronTimeConstant(leg2[i], NervousSystem.NeuronTimeConstant(leg1[i]));
+             NervousSystem.SetNeuronTimeConstant(leg3[i], NervousSystem.NeuronTimeConstant(leg1[i]));
+             NervousSystem.SetNeuronTimeConstant(leg4[i], NervousSystem.NeuronTimeConstant(leg1[i]));
+             NervousSystem.SetNeuronTimeConstant(leg5[i], NervousSystem.NeuronTimeConstant(leg1[i]));
+             NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
+         }
+         
+     }
+      
+      
+     
      
      /*
      if(!Model1)
@@ -159,10 +189,27 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg5[i], leg5[j], MapSearchParameter(v[vi++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg6[i], leg6[j], MapSearchParameter(v[vi++], min_weight, max_weight));
          }}
+     }*/
+     if(!Model1)
+     {
+         
+         //copy one set of connection weights for each leg
+         for(int i = 0;i <= (onelegneuron_num - 1);i++){
+             for(int j = 0; j <= (onelegneuron_num - 1); j++){
+                 NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi++], min_weight, max_weight));
+                 
+                 NervousSystem.SetConnectionWeight(leg2[i], leg2[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
+                 NervousSystem.SetConnectionWeight(leg3[i], leg3[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
+                 NervousSystem.SetConnectionWeight(leg4[i], leg4[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
+                 NervousSystem.SetConnectionWeight(leg5[i], leg5[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
+                 NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
+             }
+         }
      }
+     
      else
      {
-      */
+      
      //copy one set of connection weights for each leg
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
@@ -173,8 +220,10 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg4[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
              NervousSystem.SetConnectionWeight(leg5[i], leg5[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
              NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-         }}
-         
+         }
+     }
+     }
+     
      
      
      
@@ -440,7 +489,7 @@ int main(int argc, char* argv[])
     infostream << "using joint x - joint y and -atan2" << endl;
     infostream << "using foot y = joint y - because that makes more sense" << endl;
     infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
-    infostream << "changed the layout of the connections code" << endl;
+    infostream << "changed the layout of the connections code-- and fixed the connections code--it was wrong" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
     infostream << "constraint violation --> netforce = 0" << endl;
 

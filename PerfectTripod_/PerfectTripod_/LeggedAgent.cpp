@@ -29,6 +29,7 @@ const double MaxOmega = 1.0;
 double StepSize = 0.1;
 int inum = 5;
 int neuron_num_oneleg = 5;
+const double Velocity_Decay = 0.15;
 
 
 // *******
@@ -376,8 +377,10 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         //for (int i = 0; i <= inum; i++) {
             //LegVec[i].UpdateLeg(StepSize, vx);
         //}
+        cout << "constraint" << endl;
         
     }
+ 
     // if there are less than 3 feet on the ground it falls
     /*
     else if (vertx.size() < 3)
@@ -404,11 +407,13 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         if (vx < -MaxVelocity) vx = -MaxVelocity;
         if (vx > MaxVelocity) vx = MaxVelocity;}
      */
-    else
-    {
-            vx = vx + StepSize * NetForce;
-            if (vx < -MaxVelocity) vx = -MaxVelocity;
-            if (vx > MaxVelocity) vx = MaxVelocity;
+    //else
+    {   vx = vx * Velocity_Decay;
+        if (vx < -MaxVelocity) vx = 0;
+        if (vx > MaxVelocity) vx = MaxVelocity;
+        vx = vx + StepSize * NetForce;
+        if (vx < -MaxVelocity) vx = -MaxVelocity;
+        if (vx > MaxVelocity) vx = MaxVelocity;
         }
     //and now we update the leg based on all of that
     for (int i = 0; i <= inum; i++) {

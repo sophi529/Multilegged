@@ -410,12 +410,22 @@ int main(int argc, char* argv[])
     */
     
     ofstream walkstream;
-    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/walk18.dat");
-
+    walkstream.open("/Users/sophi529/Desktop/output/walk21.dat");
+    ofstream help;
+    help.open("/Users/sophi529/Desktop/output/help21.dat");
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
+       help << "time: " << time << endl;
+        for (int i = 0; i <= 5; i++) {
         
-        for (int i = 0; i <=5; i++) {
+            help << "Joint Y: " << Insect.LegVec[i].JointY << " ";
+            help << "Foot Y: " << Insect.LegVec[i].FootY << " ";
+            help << "Joint X: " << Insect.LegVec[i].JointX << " ";
+            help << "Foot X: " << Insect.LegVec[i].FootX << " ";
+            help << "Foot position: " << Insect.LegVec[i].FootState << " ";
+            help << "Angle: " << Insect.LegVec[i].Angle << endl;
+
+
             //cout << Insect.LegVec[i].JointX << " " << Insect.LegVec[i].JointY << " ";
             //cout << Insect.LegVec[i].FootX << " " << Insect.LegVec[i].FootY << " ";
             //cout << Insect.LegVec[i].FootState << endl;
@@ -429,7 +439,7 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/info18.dat");
+    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/info21.dat");
     //infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << " maxforce for the leg in swing state 0.1" << endl;
@@ -441,6 +451,8 @@ int main(int argc, char* argv[])
     infostream << "changed the layout of the connections code" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
     infostream << "tripod method of state switching" << endl;
+        infostream << "velocity decay" << endl;
+    
 
 
 
