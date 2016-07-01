@@ -20,7 +20,7 @@
 
 const int    LegLength = 15;
 const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
-const double MaxLegForce1 = 0.2;
+const double MaxLegForce1 = 0.1;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
 const double MaxVelocity = 6.0;
@@ -85,8 +85,18 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         
         LegVec[i].JointY = cy + LegVec[i].jointplacey;
         LegVec[i].JointX = cx + LegVec[i].jointplacex;
-        
+        /*
         if signbit(LegVec[i].JointX){
+            //Foot X-left
+            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
+        else{
+            //Foot X-right
+            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
+            //Foot Y
+        */
+        if (signbit(LegVec[i].JointX)){
             //Foot X-left
             LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
             LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
@@ -94,8 +104,6 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
             //Foot X-right
             LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
             LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
-            //Foot Y
-        
         }
         if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1);
         else NervousSystem.RandomizeCircuitState(0.0,0.0);
@@ -118,7 +126,7 @@ void LeggedAgent::Reset(double ix, double iy, int randomize, RandomState &rs)
         
         LegVec[i].JointY = cy + LegVec[i].jointplacey;
         LegVec[i].JointX = cx + LegVec[i].jointplacex;
-        
+        /*
         if signbit(LegVec[i].JointX){
             //Foot X-left
             LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);}
@@ -126,7 +134,16 @@ void LeggedAgent::Reset(double ix, double iy, int randomize, RandomState &rs)
             //Foot X-right
             LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);}
         //Foot Y
-        LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);
+        LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);
+         */
+        if (signbit(LegVec[i].JointX)){
+            //Foot X-left
+            LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
+        else{
+            //Foot X-right
+            LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
+            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
     }
     if (randomize) NervousSystem.RandomizeCircuitState(-0.1,0.1,rs);
     else NervousSystem.RandomizeCircuitState(0.0,0.0,rs);
@@ -340,7 +357,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
     // otherwise everything is chill and we can update the velocity
 
     
-//get rid of this TALK
+//get rid of this 
     /*
     else if (NetForce == 0)
     {

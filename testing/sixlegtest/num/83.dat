@@ -1,0 +1,4 @@
+Seed: 626364
+Average velocity = 5.02125
+increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer
+population size to 300 and max generations to 2000. just in case...

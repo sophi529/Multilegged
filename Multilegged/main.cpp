@@ -40,9 +40,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = true;
+const bool Model1 = false;
 //all six connections evolved
-const bool Model2 = false;
+const bool Model2 = true;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
@@ -99,10 +99,11 @@ double max_weight = 10;
      
      int vi = 1;
      int vim = 1;
-
+/*
   if (Model1)
       
-  {for(int i = 1;i <= onelegneuron_num;i++)
+  {*/
+ for(int i = 1;i <= onelegneuron_num;i++)
   {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vim++], min_bias, max_bias));}
 
      for(int i = 1;i <= onelegneuron_num;i++) {
@@ -125,11 +126,13 @@ double max_weight = 10;
           NervousSystem.SetNeuronTimeConstant(leg5[i], NervousSystem.NeuronTimeConstant(leg1[i]));
           NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
       }
-
+/*
   }
+ 
      
   else
-  {for(int i = 1;i <= neuron_num;i++)
+  {
+ for(int i = 1;i <= neuron_num;i++)
  NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));
  
  for(int i = 1;i <= neuron_num;i++) {
@@ -140,10 +143,10 @@ double max_weight = 10;
  //   NervousSystem.SetNeuronGain(i, MapSearchParameter(v[vi++], min_bias, max_bias));
 //}
   }
+*/
      
      
-     
-     
+     /*
      if(!Model1)
      {
      //interconnections in one leg
@@ -159,6 +162,7 @@ double max_weight = 10;
      }
      else
      {
+      */
      //copy one set of connection weights for each leg
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
@@ -171,7 +175,7 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
          }}
          
-     }
+     
      
      
 
@@ -207,25 +211,20 @@ double max_weight = 10;
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vi++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-     }
-         for(int i = 0;i <= onelegneuron_num - 1;i++){
+             
              NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
              NervousSystem.SetConnectionWeight(leg2[i], leg3[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-         }
-         for(int i = 0;i <= onelegneuron_num - 1;i++){
+
              NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg2[i], leg3[i]));
              NervousSystem.SetConnectionWeight(leg3[i], leg4[i], MapSearchParameter(v[vi++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg3[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-         }
-         for(int i = 0;i <= onelegneuron_num - 1;i++){
+
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg4[i]));
              NervousSystem.SetConnectionWeight(leg4[i], leg5[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-         }
-         for(int i = 0;i <= onelegneuron_num - 1;i++){
+
              NervousSystem.SetConnectionWeight(leg5[i], leg4[i], NervousSystem.ConnectionWeight(leg4[i], leg5[i]));
              NervousSystem.SetConnectionWeight(leg5[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-         }
-         for(int i = 0;i <= onelegneuron_num - 1;i++){
+
              NervousSystem.SetConnectionWeight(leg6[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
              NervousSystem.SetConnectionWeight(leg6[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg6[i]));
              NervousSystem.SetConnectionWeight(leg6[i], leg5[i], NervousSystem.ConnectionWeight(leg5[i], leg6[i]));
@@ -349,36 +348,36 @@ double evaluate(TVector<double> &v, RandomState &r){
 int main(int argc, char* argv[])
 //int main(int seed)
 {
-           //int seed = atoi(argv[1]);
-    //string walk = argv[2];
-    //string info = argv[3];
+    int seed = atoi(argv[1]);
+    string walk = argv[2];
+    string info = argv[3];
     
     LeggedAgent Insect;
     
 
     
-    TSearch s(vector_size_Model1);
+    //TSearch s(vector_size_Model1);
 
  
     //if(Model1)
         //s.SetVectorSize(vector_size_Model1);
     //else
-        //s.SetVectorSize(vector_size);
+        TSearch s(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
 
 
 
-    s.SetRandomSeed(65666768);
+    s.SetRandomSeed(seed);
 
 
     s.SetEvaluationFunction(evaluate);
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(100);
-    s.SetMaxGenerations(1000);
+    s.SetPopulationSize(150);
+    s.SetMaxGenerations(1500);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -394,7 +393,7 @@ int main(int argc, char* argv[])
     //
  
     // Load the CTRNN into the agent
-    char fname[] = "/Users/Sophi529/Desktop/best.ns";
+    char fname[] = "/Users/sophi529/Desktop/best.ns";
     ifstream ifs;
     ifs.open(fname);
     if (!ifs) {
@@ -413,7 +412,7 @@ int main(int argc, char* argv[])
     
     
     ofstream walkstream;
-    walkstream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/walk/walk_86.dat");
+    walkstream.open(walk);
 
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
@@ -432,14 +431,18 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/info/info_86.dat");
-    infostream << "Seed: " << 65666768 << endl;
+    infostream.open(info);
+    infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    infostream << "increased the maxforce for the leg in swing state from .05 to .2. livin on a prayer" << endl;
-    infostream << "population size to 300 and max generations to 2000. just in case..." << endl;
+    infostream << " maxforce for the leg in swing state 0.1" << endl;
+    infostream << "population size to 150 and max generations to 1500" << endl;
     infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
-    infostream << "implement balance function" << endl;
-    infostream << "using foot y = joint y -... like the other code" << endl;
+    infostream << "using joint x - joint y and -atan2" << endl;
+    infostream << "using foot y = joint y - because that makes more sense" << endl;
+    infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
+    infostream << "changed the layout of the connections code" << endl;
+    infostream << "copy neuron state no matter what the model" << endl;
+
 
 
      walkstream.close();
@@ -447,7 +450,7 @@ int main(int argc, char* argv[])
     
     // Display the fitness
     cout << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    cout << "Random seed: " << 65666768 << endl;
+    cout << "Random seed: " << seed << endl;
     //xl << "Average velocity = " << Insect.LegVec[0].JointY/RunDuration << endl;
     //xl.close();
     

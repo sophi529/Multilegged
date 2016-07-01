@@ -1,0 +1,7 @@
+Seed: 71727374
+Average velocity = 4.58722
+ maxforce for the leg in swing state 0.1
+population size to 300 and max generations to 2000. just in case...
+get rid of if net force is 0 vx is 0 and implement stability check
+implement balance function
+using foot y = joint y -... like the other code
