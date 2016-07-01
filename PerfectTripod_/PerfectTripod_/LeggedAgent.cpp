@@ -305,7 +305,52 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
            
         }
 
-    
+    for(int i = 0; i <= inum; i++)
+    {
+        if(i == 5)
+        {
+        if (LegVec[i].FootState == 1){
+            if (LegVec[0].Angle < ForwardAngleLimit) {
+                LegVec[0].FootState = 0;
+            }
+            else if(LegVec[0].Angle >= ForwardAngleLimit)
+            {
+                LegVec[0].FootState = 1;
+                LegVec[i].FootState = 0;
+            }
+                }
+        else
+        {
+            if(LegVec[i].Angle < ForwardAngleLimit)
+                LegVec[0].FootState = 1;
+            else{
+                LegVec[i].FootState = 1;
+                LegVec[0].FootState = 0;
+            }
+        }
+        }
+        else{
+        if (LegVec[i].FootState == 1){
+            if (LegVec[i+1].Angle < ForwardAngleLimit) {
+                LegVec[i+1].FootState = 0;
+            }
+            else if(LegVec[i+1].Angle >= ForwardAngleLimit)
+            {
+                LegVec[i+1].FootState = 1;
+                LegVec[i].FootState = 0;
+            }
+        }
+        else
+        {
+            if(LegVec[i].Angle < ForwardAngleLimit)
+                LegVec[i+1].FootState = 1;
+            else{
+                LegVec[i].FootState = 1;
+                LegVec[i+1].FootState = 0;
+            }
+        }
+        }
+    }
     
     
     //cout << "Neuron output" << NervousSystem.NeuronOutput(1) << endl;
