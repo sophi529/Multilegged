@@ -111,11 +111,11 @@ void LeggedAgent::Reset(double ix, double iy, int randomize)
         if (signbit(LegVec[i].JointX)){
             //Foot X-left
             LegVec[i].FootX = LegVec[i].JointX - LegLength * cos(LegVec[i].Angle);
-            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
         else{
             //Foot X-right
             LegVec[i].FootX = LegVec[i].JointX + LegLength * cos(LegVec[i].Angle);
-            LegVec[i].FootY = LegVec[i].JointY - LegLength * sin(LegVec[i].Angle);}
+            LegVec[i].FootY = LegVec[i].JointY + LegLength * sin(LegVec[i].Angle);}
         }
    
     
