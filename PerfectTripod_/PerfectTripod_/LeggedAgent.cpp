@@ -371,7 +371,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 
     if (ConstraintViolation())
     {
-        NetForce = 0.0;
+        vx = 0.0;
         //cout << LegVec[0].JointY - LegVec[0].FootY << endl;
         
         //for (int i = 0; i <= inum; i++) {
@@ -400,7 +400,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 
     
     //else
-    {   
+    {
         vx = vx + StepSize * NetForce;
         if (vx < -MaxVelocity) vx = -MaxVelocity;
         if (vx > MaxVelocity) vx = MaxVelocity;

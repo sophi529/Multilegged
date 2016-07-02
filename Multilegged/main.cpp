@@ -486,12 +486,10 @@ int main(int argc, char* argv[])
     infostream << " maxforce for the leg in swing state 0.1" << endl;
     infostream << "population size to 150 and max generations to 1500" << endl;
     infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
-    infostream << "using joint x - joint y and -atan2 (I wasnt using this before damn i forgot to change it but now im using it)" << endl;
-    infostream << "using foot y = joint y - because that makes more sense" << endl;
     infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
     infostream << "changed the layout of the connections code-- and fixed the connections code--it was wrong" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
-    infostream << "constraint violation --> netforce = 0" << endl;
+    infostream << "my trig" << endl;
 
 
 

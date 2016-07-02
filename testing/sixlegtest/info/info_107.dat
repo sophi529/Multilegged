@@ -1,0 +1,10 @@
+Seed: 85868788
+Average velocity = 0.613937
+ maxforce for the leg in swing state 0.1
+population size to 150 and max generations to 1500
+get rid of if net force is 0 vx is 0 and implement stability check
+model 2... part of the problem might be because of the connections we're using....
+changed the layout of the connections code-- and fixed the connections code--it was wrong
+copy neuron state no matter what the model
+my trig
+this model is hitting the same problem as my perfect stepper. it’s going too fast and then stopping because it violates the constraints
