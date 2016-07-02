@@ -19,7 +19,7 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce6 = /*0.05*/ /*0.008*/0.0167;
+const double MaxLegForce6 = 0.001;
 const double MaxLegForce1 = 0.1;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;

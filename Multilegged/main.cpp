@@ -23,7 +23,11 @@
 // 8/27/94	Created
 // 5/25/02  Revised for OS X
 // *************************************************************
-//I FIXED THE NUMBER IN THE SEARCH VECTOR AND INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE
+//decrease max leg force
+//cut down max velocity
+//velocity decay
+//coevolve body with nervous system
+//dont worry about other connections
 
 #include "LeggedAgent.hpp"
 #include "Leg.hpp"
@@ -40,9 +44,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = false;
+const bool Model1 = true;
 //all six connections evolved
-const bool Model2 = true;
+const bool Model2 = false;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
@@ -393,7 +397,7 @@ double evaluate(TVector<double> &v, RandomState &r){
     
 }
 
-/*
+
 int main(int argc, char* argv[])
 //int main(int seed)
 {
@@ -489,7 +493,8 @@ int main(int argc, char* argv[])
     infostream << "model 1" << endl;
     infostream << "changed the layout of the connections code-- and fixed the connections code--it was wrong" << endl;
     infostream << "copy neuron state no matter what the model" << endl;
-    infostream << "my trig" << endl;
+    infostream << "my trig. ALL OF IT" << endl;
+    infostream << "decrease the force of the legs in stance phase to .001" << endl;
 
 
 
@@ -506,9 +511,9 @@ int main(int argc, char* argv[])
     return 0;
 
 }
-*/
 
 
+/*
 int main()
 {
     TVector<double> testvec;
@@ -523,7 +528,7 @@ int main()
     cout << Insect.NervousSystem;
     return 0;
 }
-
+*/
 
 
 /*
