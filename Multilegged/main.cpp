@@ -499,7 +499,7 @@ int main(int argc, char* argv[])
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    infostream << "MaxLegForce6 = 0.01" << endl;
+    infostream << "MaxLegForce6 = 0.02" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "following all constraints i can from perfect tripod" << endl;
     infostream << "two extra neurons for the different leg directions" << endl;
