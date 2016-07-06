@@ -280,6 +280,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 {
     //make a vector to hold foot states
     vertx.clear();
+    verty.clear();
         for (int i = 0; i <= inum; i++) {
         if(LegVec[i].FootState == 1)
         {
@@ -352,7 +353,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         //}
         
     }
-/*
+
     // if there are less than 3 feet on the ground it falls
     
     else if (vertx.size() < 3)
@@ -369,7 +370,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         vx = 0.0;
      
     // otherwise everything is chill and we can update the velocity
- */
+ 
     
 
     else
