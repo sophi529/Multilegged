@@ -366,6 +366,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         cout << "uhoh" << endl;
         vx = 0.0;
     }
+
     else if (!balance())
         vx = 0.0;
      
