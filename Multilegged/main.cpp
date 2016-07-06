@@ -183,7 +183,7 @@ double max_weight = 10;
      /*
      if(!Model1)
      {
-     //interconnections in one leg
+     //interconnections in one leg (What i was using to test things)
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
              NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi++], min_weight, max_weight));
@@ -235,6 +235,7 @@ double max_weight = 10;
      
      //test connections 1
      if (Model1) {
+         /*
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
@@ -255,7 +256,8 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
           
          }
-        
+        */
+         return;
 
      }
      
@@ -406,12 +408,12 @@ int main(int argc, char* argv[])
     string walk = argv[2];
     string info = argv[3];
     string help = argv[4];
-    /*
-    int seed = 76543;
-    string walk = "/Users/sophi529/Desktop/output/walk_176.dat";
-    string info = "/Users/sophi529/Desktop/output/176.dat";
-    string help = "/Users/sophi529/Desktop/output/help_176.dat";
-    */
+ 
+    //int seed = 76543;
+    //string walk = "/Users/sophi529/Desktop/output/walk_176.dat";
+    //string info = "/Users/sophi529/Desktop/output/176.dat";
+    //string help = "/Users/sophi529/Desktop/output/help_176.dat";
+ 
     
     LeggedAgent Insect;
     
@@ -505,6 +507,7 @@ int main(int argc, char* argv[])
     infostream << "two extra neurons for the different leg directions" << endl;
     infostream << "adding in balance" << endl;
     infostream << "adding in pnpoly" << endl;
+    infostream << "no connections between legs, only within legs" << endl;
 
   
 
