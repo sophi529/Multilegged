@@ -291,8 +291,17 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
             //cout << "vertx" << " " << i << " :" << vertx[i] << endl;
             //cout << "verty" << " " << i << " :" << verty[i] << endl;
         }
-        
-        }
+            
+            }
+    /*
+    if(vertx.size() > 0)
+    {for (int j = 0; j <= vertx.size()-1; j++) {
+        cout << "vertx " << j << " :" << vertx[j] << endl;
+        cout << "verty " << j << " :" << verty[j] << endl;
+    }}
+     */
+    
+    
 
 
 
@@ -363,7 +372,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
     //else if (vertx.size() > 2 && vertx.size() < 5)
     else if (pnpoly() == 0)
     {
-        cout << "uhoh" << endl;
+        //cout << "uhoh" << endl;
         vx = 0.0;
     }
 
@@ -401,7 +410,7 @@ int LeggedAgent::pnpoly()
     //cout << nvert << endl;
     double testx = 0;
     double testy = LegVec[2].JointY;
-    cout << testy << endl;
+    //cout << testy << endl;
     
     int i, j, c = 0;
     for (i = 0, j = nvert-1; i < nvert; j = i++) {

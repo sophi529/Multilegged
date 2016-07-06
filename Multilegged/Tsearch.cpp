@@ -457,8 +457,8 @@ void TSearch::DisplayPopulationStatistics(void)
     else {
         
         
-        //cout << Gen << " " << BestPerf << " ";
-         //cout  << AvgPerf << " " << PerfVar << endl;
+        cout << Gen << " " << BestPerf << " ";
+         cout  << AvgPerf << " " << PerfVar << endl;
         
     }
 

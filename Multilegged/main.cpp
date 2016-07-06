@@ -401,17 +401,17 @@ double evaluate(TVector<double> &v, RandomState &r){
 int main(int argc, char* argv[])
 //int main(int seed)
 {
-    /*
+    
     int seed = atoi(argv[1]);
     string walk = argv[2];
     string info = argv[3];
     string help = argv[4];
-    */
-    int seed = 45678;
+    /*
+    int seed = 76543;
     string walk = "/Users/sophi529/Desktop/output/walk_176.dat";
     string info = "/Users/sophi529/Desktop/output/176.dat";
     string help = "/Users/sophi529/Desktop/output/help_176.dat";
-    
+    */
     
     LeggedAgent Insect;
     
@@ -504,6 +504,7 @@ int main(int argc, char* argv[])
     infostream << "following all constraints i can from perfect tripod" << endl;
     infostream << "two extra neurons for the different leg directions" << endl;
     infostream << "adding in balance" << endl;
+    infostream << "adding in pnpoly" << endl;
 
   
 
