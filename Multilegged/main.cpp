@@ -503,6 +503,7 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.5" << endl;
     infostream << "following all constraints i can from perfect tripod" << endl;
     infostream << "two extra neurons for the different leg directions" << endl;
+    infostream << "adding in balance" << endl;
 
   
 

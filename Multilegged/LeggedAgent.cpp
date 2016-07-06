@@ -365,11 +365,12 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         cout << "uhoh" << endl;
         vx = 0.0;
     }
+ */
     else if (!balance())
         vx = 0.0;
      
     // otherwise everything is chill and we can update the velocity
- */
+ 
     
 
     else
