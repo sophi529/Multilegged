@@ -157,8 +157,8 @@ public:
     
     double posjointx[6] = {pos1x, pos2x, pos3x, pos4x, pos5x, pos6x};
     //double posjointx[2] = {pos3x, pos4x};
-    std::vector<float> vertx;
-    std::vector<float> verty;
+    std::vector<double> vertx;
+    std::vector<double> verty;
 
 };
 

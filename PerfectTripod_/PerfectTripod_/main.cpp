@@ -410,20 +410,20 @@ int main(int argc, char* argv[])
     */
     
     ofstream walkstream;
-    walkstream.open("/Users/sophi529/Desktop/output/walk21.dat");
-    ofstream help;
-    help.open("/Users/sophi529/Desktop/output/help21.dat");
+    walkstream.open("/Users/sophi529/Desktop/output/walk32.dat");
+    //ofstream help;
+    //help.open("/Users/sophi529/Desktop/output/help21.dat");
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
-       help << "time: " << time << endl;
+       //help << "time: " << time << endl;
         for (int i = 0; i <= 5; i++) {
         
-            help << "Joint Y: " << Insect.LegVec[i].JointY << " ";
-            help << "Foot Y: " << Insect.LegVec[i].FootY << " ";
-            help << "Joint X: " << Insect.LegVec[i].JointX << " ";
-            help << "Foot X: " << Insect.LegVec[i].FootX << " ";
-            help << "Foot position: " << Insect.LegVec[i].FootState << " ";
-            help << "Angle: " << Insect.LegVec[i].Angle << endl;
+            //help << "Joint Y: " << Insect.LegVec[i].JointY << " ";
+            //help << "Foot Y: " << Insect.LegVec[i].FootY << " ";
+            //help << "Joint X: " << Insect.LegVec[i].JointX << " ";
+            //help << "Foot X: " << Insect.LegVec[i].FootX << " ";
+            //help << "Foot position: " << Insect.LegVec[i].FootState << " ";
+            //help << "Angle: " << Insect.LegVec[i].Angle << endl;
 
 
             //cout << Insect.LegVec[i].JointX << " " << Insect.LegVec[i].JointY << " ";
@@ -439,19 +439,13 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/Sophi529/Desktop/Multilegged/testing/sixlegtest/perfect stepper/info21.dat");
+    infostream.open("/Users/sophi529/Desktop/output/info32.dat");
     //infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    infostream << " maxforce for the leg in swing state 0.1" << endl;
-    infostream << "population size to 150 and max generations to 1500" << endl;
-    infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
-    infostream << "using joint x - joint y and -atan2" << endl;
-    infostream << "using foot y = joint y - because that makes more sense" << endl;
-    infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
-    infostream << "changed the layout of the connections code" << endl;
-    infostream << "copy neuron state no matter what the model" << endl;
-    infostream << "tripod method of state switching" << endl;
-        infostream << "no velocity decay" << endl;
+    infostream << " my trig" << endl;
+    infostream << "velocity decay = 0.999" << endl;
+    infostream << "MaxLegForce6 = 0.01" << endl;
+    infostream << "MaxLegForce1 = 0.5" << endl;
     
 
 

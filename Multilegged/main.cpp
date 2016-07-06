@@ -23,7 +23,11 @@
 // 8/27/94	Created
 // 5/25/02  Revised for OS X
 // *************************************************************
-//I FIXED THE NUMBER IN THE SEARCH VECTOR AND INCREASED THE INDIVIDUAL STANCE LEG MAX FORCE
+//decrease max leg force
+//cut down max velocity
+//velocity decay
+//coevolve body with nervous system
+//dont worry about other connections
 
 #include "LeggedAgent.hpp"
 #include "Leg.hpp"
@@ -40,9 +44,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = false;
+const bool Model1 = true;
 //all six connections evolved
-const bool Model2 = true;
+const bool Model2 = false;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
@@ -52,14 +56,14 @@ const bool Model4 = false;
 
 //CHANGED
 
-int neuron_num = 30;
-int onelegneuron_num = 5;
+int neuron_num = /*30*/42;
+int onelegneuron_num = /*5*/7;
 
 double vector_fill = 2;
 
 
 /*double*/int vector_size = (neuron_num * neuron_num) + (2 * neuron_num);
-int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 12;
+int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 24/*12*/;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -397,21 +401,29 @@ double evaluate(TVector<double> &v, RandomState &r){
 int main(int argc, char* argv[])
 //int main(int seed)
 {
+    
     int seed = atoi(argv[1]);
     string walk = argv[2];
     string info = argv[3];
+    string help = argv[4];
+    /*
+    int seed = 45678;
+    string walk = "/Users/sophi529/Desktop/output/walk_169.dat";
+    string info = "/Users/sophi529/Desktop/output/169.dat";
+    string help = "/Users/sophi529/Desktop/output/help_169.dat";
+    */
     
     LeggedAgent Insect;
     
 
     
-    //TSearch s(vector_size_Model1);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
         //s.SetVectorSize(vector_size_Model1);
     //else
-        TSearch s(vector_size);
+        //TSearch s(vector_size);
     //cout << s.VectorSize() << endl;
 
     // Configure the search
@@ -462,20 +474,24 @@ int main(int argc, char* argv[])
     
     ofstream walkstream;
     walkstream.open(walk);
-
+    ofstream helpstream;
+    helpstream.open(help);
     for (double time = 0; time < RunDuration; time += StepSize) {
         Insect.Step(StepSize);
-        
+        helpstream << time << endl;
         for (int i = 0; i <=5; i++) {
-            //cout << Insect.LegVec[i].JointX << " " << Insect.LegVec[i].JointY << " ";
-            //cout << Insect.LegVec[i].FootX << " " << Insect.LegVec[i].FootY << " ";
-            //cout << Insect.LegVec[i].FootState << endl;
-            //cout << "LegVec[i].Angle: " << Insect.LegVec[i].Angle << endl;
+            helpstream << "Joint X: " << Insect.LegVec[i].JointX << "Joint Y: " << Insect.LegVec[i].JointY << "Foot X: ";
+            helpstream << Insect.LegVec[i].FootX << "Foot Y: " << Insect.LegVec[i].FootY << "FootState: ";
+            helpstream << Insect.LegVec[i].FootState << endl;
+            helpstream << "LegVec[i].Angle: " << Insect.LegVec[i].Angle << endl;
+            
+            
             walkstream << Insect.LegVec[i].JointY <<  " " << Insect.LegVec[i].JointX << " " ;
             walkstream << Insect.LegVec[i].FootY << " " << Insect.LegVec[i].FootX << " ";
             walkstream << Insect.LegVec[i].FootState << " ";
     }
         walkstream << endl;
+        helpstream << endl;
         
        
     }
@@ -483,19 +499,21 @@ int main(int argc, char* argv[])
     infostream.open(info);
     infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
-    infostream << " maxforce for the leg in swing state 0.1" << endl;
-    infostream << "population size to 150 and max generations to 1500" << endl;
-    infostream << "get rid of if net force is 0 vx is 0 and implement stability check" << endl;
-    infostream << "model 2... part of the problem might be because of the connections we're using...." << endl;
-    infostream << "changed the layout of the connections code-- and fixed the connections code--it was wrong" << endl;
-    infostream << "copy neuron state no matter what the model" << endl;
-    infostream << "my trig" << endl;
+    infostream << "MaxLegForce6 = 0.01" << endl;
+    infostream << "MaxLegForce1 = 0.5" << endl;
+    infostream << "following all constraints i can from perfect tripod" << endl;
+    infostream << "two extra neurons for the different leg directions" << endl;
+
+  
 
 
 
      walkstream.close();
     infostream.close();
+    helpstream.close();
     
+    
+    //// RETURN THIS
     // Display the fitness
     cout << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     cout << "Random seed: " << seed << endl;
@@ -512,8 +530,8 @@ int main(int argc, char* argv[])
 int main()
 {
     TVector<double> testvec;
-    testvec.SetSize(vector_size);
-    for (int i = 1; i <=vector_size; i++) {
+    testvec.SetSize(vector_size_Model1);
+    for (int i = 1; i <=vector_size_Model1; i++) {
         testvec[i] = i;
     }
     

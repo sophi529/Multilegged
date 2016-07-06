@@ -1,0 +1,7 @@
+Seed: 77787980
+Average velocity = 4.27101
+MaxLegForce6 = 0.008
+MaxLegForce1 = 0.1
+no velocity decay
+FootY = jointy +
+The angle always stays the same—at the backwards angle limit. the only reason the incorrect trig worked is because it lied to the body and told it to move the leg forward when it really should have been moved backward

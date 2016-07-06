@@ -1,0 +1,6 @@
+Seed: 23456
+Average velocity = 1.86495
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.5
+velocity decay = vx - (vx*0.015)
+my trig

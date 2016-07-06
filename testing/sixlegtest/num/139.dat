@@ -1,0 +1,11 @@
+Seed: 1154002128
+Average velocity = 0.0557284
+ maxforce for the leg in swing state 0.1
+population size to 150 and max generations to 1500
+get rid of if net force is 0 vx is 0 and implement stability check
+model 1
+changed the layout of the connections code-- and fixed the connections code--it was wrong
+copy neuron state no matter what the model
+my trig. ALL OF IT
+force of legs in stance phase 0.0167
+velocity decay = 0.9
