@@ -32,7 +32,7 @@ const double MaxVelocity = 6.0;
 const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
 const int VecSize = 5;
-const double MaxLegForce1 = 0.1;
+const double MaxLegForce1 = 0.5;
 int j = 0;
 
 

@@ -410,7 +410,7 @@ int main(int argc, char* argv[])
     */
     
     ofstream walkstream;
-    walkstream.open("/Users/sophi529/Desktop/output/walk32.dat");
+    walkstream.open("/Users/sophi529/Desktop/output/walk34.dat");
     //ofstream help;
     //help.open("/Users/sophi529/Desktop/output/help21.dat");
     for (double time = 0; time < RunDuration; time += StepSize) {
@@ -439,7 +439,7 @@ int main(int argc, char* argv[])
        
     }
     ofstream infostream;
-    infostream.open("/Users/sophi529/Desktop/output/info32.dat");
+    infostream.open("/Users/sophi529/Desktop/output/info34.dat");
     //infostream << "Seed: " << seed << endl;
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << " my trig" << endl;

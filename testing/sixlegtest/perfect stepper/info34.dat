@@ -2,4 +2,5 @@ Average velocity = 1.90058
  my trig
 velocity decay = 0.999
 MaxLegForce6 = 0.01
-MaxLegForce1 = 0.1
+MaxLegForce1 = 0.5
+doesnt use the full range of the backward section 
