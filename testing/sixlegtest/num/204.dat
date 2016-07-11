@@ -1,0 +1,10 @@
+Seed: 1395149415
+Average velocity = 3.18994
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+following all constraints i can from perfect tripod
+5 neurons
+all checking functions in place
+test model
+population = 150
+generations = 1500

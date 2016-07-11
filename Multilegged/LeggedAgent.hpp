@@ -58,6 +58,7 @@ public:
     double PositionX(void) {return cx;};
     void SetPositionX(double newx) {cx = newx;};
     double NetForce;
+    int nvert;
     
     // Control
     void Reset(double ix, double iy, int randomize = 0);

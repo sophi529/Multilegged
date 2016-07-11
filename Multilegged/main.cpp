@@ -56,14 +56,14 @@ const bool Model4 = false;
 
 //CHANGED
 
-int neuron_num = /*30*/42;
-int onelegneuron_num = /*5*/7;
+int neuron_num = 30/*42*/;
+int onelegneuron_num = 5/*7*/;
 
 double vector_fill = 2;
 
 
-/*double*/int vector_size = (neuron_num * neuron_num) + (2 * neuron_num);
-int vector_size_Model1 = (onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 24/*12*/;
+/*double*/int vector_size = /*(neuron_num * neuron_num) + (2 * neuron_num)*/70;
+int vector_size_Model1 = /*(onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 12*/ 50;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -183,7 +183,7 @@ double max_weight = 10;
      /*
      if(!Model1)
      {
-     //interconnections in one leg
+     //interconnections in one leg (What i was using to test things)
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
              NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi++], min_weight, max_weight));
@@ -235,6 +235,7 @@ double max_weight = 10;
      
      //test connections 1
      if (Model1) {
+         
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
@@ -256,6 +257,7 @@ double max_weight = 10;
           
          }
         
+         //return;
 
      }
      
@@ -401,17 +403,17 @@ double evaluate(TVector<double> &v, RandomState &r){
 int main(int argc, char* argv[])
 //int main(int seed)
 {
-    
+   
     int seed = atoi(argv[1]);
     string walk = argv[2];
     string info = argv[3];
     string help = argv[4];
-    /*
-    int seed = 76543;
-    string walk = "/Users/sophi529/Desktop/output/walk_176.dat";
-    string info = "/Users/sophi529/Desktop/output/176.dat";
-    string help = "/Users/sophi529/Desktop/output/help_176.dat";
-    */
+  
+    //int seed = 16263646;
+    //string walk = "/Users/sophi529/Desktop/output/walk_186.dat";
+    //string info = "/Users/sophi529/Desktop/output/186.dat";
+    //string help = "/Users/sophi529/Desktop/output/help_186.dat";
+ 
     
     LeggedAgent Insect;
     
@@ -502,9 +504,13 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "following all constraints i can from perfect tripod" << endl;
-    infostream << "two extra neurons for the different leg directions" << endl;
-    infostream << "adding in balance" << endl;
-    infostream << "adding in pnpoly" << endl;
+    infostream << "5 neurons" << endl;
+    infostream << "all checking functions in place" << endl;
+    infostream << "test model" << endl;
+    infostream << "population = 150" << endl;
+    infostream << "generations = 1500" << endl;
+
+
 
   
 
@@ -532,8 +538,8 @@ int main(int argc, char* argv[])
 int main()
 {
     TVector<double> testvec;
-    testvec.SetSize(vector_size_Model1);
-    for (int i = 1; i <=vector_size_Model1; i++) {
+    testvec.SetSize(vector_size);
+    for (int i = 1; i <=vector_size; i++) {
         testvec[i] = i;
     }
     

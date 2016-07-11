@@ -1,0 +1,9 @@
+Seed: 18283848
+Average velocity = 0.110497
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+following all constraints i can from perfect tripod
+two extra neurons for the different leg directions
+adding in balance
+adding in pnpoly
+model 2

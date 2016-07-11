@@ -19,7 +19,7 @@
 // Constants
 
 const int    LegLength = 15;
-const double MaxLegForce6 = 0.1;
+const double MaxLegForce6 = 0.05;
 const double MaxLegForce1 = 0.75;
 const double ForwardAngleLimit = Pi/6;
 const double BackwardAngleLimit = -Pi/6;
@@ -28,7 +28,7 @@ const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
 double StepSize = 0.1;
 int inum = 5;
-int neuron_num_oneleg = /*5*/7;
+int neuron_num_oneleg = 5/*7*/;
 double velocity_decay = 0.999;
 
 
@@ -199,8 +199,8 @@ void LeggedAgent::ForceOutput()
        
         LegVec[i].LegForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce1;
         LegVec[i].LegBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce1;
-        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][3]) * MaxLegForce6;
-        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][4]) * MaxLegForce6;
+        LegVec[i].BodyForwardForce = NervousSystem.NeuronOutput(doublevec[i][1]) * MaxLegForce6;
+        LegVec[i].BodyBackwardForce = NervousSystem.NeuronOutput(doublevec[i][2]) * MaxLegForce6;
         
         
     }
@@ -281,6 +281,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
     //make a vector to hold foot states
     vertx.clear();
     verty.clear();
+    nvert = 0;
         for (int i = 0; i <= inum; i++) {
         if(LegVec[i].FootState == 1)
         {
@@ -293,6 +294,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
         }
             
             }
+    nvert = vertx.size();
     /*
     if(vertx.size() > 0)
     {for (int j = 0; j <= vertx.size()-1; j++) {
@@ -365,20 +367,22 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 
     // if there are less than 3 feet on the ground it falls
     
-    else if (vertx.size() < 3)
+    else if (nvert < 3)
     vx = 0.0;
+    
         //cout << "boomsmall" << endl;}
     // if the center of gravity is outside of the feet (return 0) it falls
     //else if (vertx.size() > 2 && vertx.size() < 5)
     else if (pnpoly() == 0)
-    {
+    
         //cout << "uhoh" << endl;
         vx = 0.0;
-    }
+    
 
-    else if (!balance())
-        vx = 0.0;
-     
+    else if (balance() == 0)
+    vx = 0.0;
+            
+    
     // otherwise everything is chill and we can update the velocity
  
     
@@ -406,7 +410,7 @@ void LeggedAgent::UpdateBodyModel(double StepSize)
 int LeggedAgent::pnpoly()
 {
     
-    int nvert = vertx.size();
+    //int nvert = vertx.size();
     //cout << nvert << endl;
     double testx = 0;
     double testy = LegVec[2].JointY;

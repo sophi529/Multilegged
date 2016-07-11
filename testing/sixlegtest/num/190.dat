@@ -1,0 +1,12 @@
+Seed: 92827262
+Average velocity = 0.964521
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+following all constraints i can from perfect tripod
+only 5 neurons since last time didnt work at ALL
+adding in balance
+adding in pnpoly
+model 2
+population = 300
+generations = 6000
+My search vector is way too big. Next time I’ll make sure it’s smaller
