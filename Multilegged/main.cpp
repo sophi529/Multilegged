@@ -44,9 +44,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = true;
+const bool Model1 = false;
 //all six connections evolved
-const bool Model2 = false;
+const bool Model2 = true;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
@@ -56,13 +56,13 @@ const bool Model4 = false;
 
 //CHANGED
 
-int neuron_num = 30/*42*/;
-int onelegneuron_num = 5/*7*/;
+int neuron_num = /*30*/42;
+int onelegneuron_num = /*5*/7;
 
 double vector_fill = 2;
 
 
-/*double*/int vector_size = /*(neuron_num * neuron_num) + (2 * neuron_num)*/70;
+/*double*/int vector_size = /*(neuron_num * neuron_num) + (2 * neuron_num)*/112;
 int vector_size_Model1 = /*(onelegneuron_num * onelegneuron_num) + (2 * onelegneuron_num) + 12*/ 50;
 double min_bias = -10;
 double max_bias = 10;
@@ -419,7 +419,7 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(vector_size_Model1);
+    TSearch s(vector_size);
 
  
     //if(Model1)
@@ -439,8 +439,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(150);
-    s.SetMaxGenerations(1500);
+    s.SetPopulationSize(300);
+    s.SetMaxGenerations(8000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -503,12 +503,11 @@ int main(int argc, char* argv[])
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
-    infostream << "following all constraints i can from perfect tripod" << endl;
-    infostream << "5 neurons" << endl;
+    infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "test model" << endl;
-    infostream << "population = 150" << endl;
-    infostream << "generations = 1500" << endl;
+    infostream << "model 2" << endl;
+    infostream << "population = 300" << endl;
+    infostream << "generations = 8000" << endl;
 
 
 
