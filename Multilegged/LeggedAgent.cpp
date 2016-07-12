@@ -28,7 +28,7 @@ const double MaxTorque = 0.5;
 const double MaxOmega = 1.0;
 double StepSize = 0.1;
 int inum = 5;
-int neuron_num_oneleg = 5/*7*/;
+int neuron_num_oneleg = /*5*/7;
 double velocity_decay = 0.999;
 
 
