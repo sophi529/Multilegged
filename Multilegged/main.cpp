@@ -44,13 +44,13 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = false;
+const bool Model1 = true;
 //all six connections evolved
 const bool Model2 = false;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
-const bool Model4 = true;
+const bool Model4 = false;
 
 
 
@@ -555,7 +555,7 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(vector_size);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
@@ -576,7 +576,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(150);
-    s.SetMaxGenerations(8000);
+    s.SetMaxGenerations(1500);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -641,9 +641,9 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "model 4" << endl;
+    infostream << "test connections 1" << endl;
     infostream << "population = 150" << endl;
-    infostream << "generations = 8000" << endl;
+    infostream << "generations = 1500" << endl;
 
 
 
