@@ -48,9 +48,9 @@ const bool Model1 = false;
 //all six connections evolved
 const bool Model2 = false;
 //contralateral connections evolved
-const bool Model3 = true;
+const bool Model3 = false;
 //ipsilateral connections evolved
-const bool Model4 = false;
+const bool Model4 = true;
 
 
 
@@ -62,7 +62,7 @@ int onelegneuron_num = /*5*/7;
 double vector_fill = 2;
 
 
-/*double*/int vector_size = /*112*/ 84;
+/*double*/int vector_size = /*112*/ /*84*/ 91;
 int vector_size_Model1 = 77 /*91*/;
 double min_bias = -10;
 double max_bias = 10;
@@ -423,6 +423,53 @@ double max_weight = 10;
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg4[i]));
          }
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], 3.43194189);
+         
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], 3.43194189);
+         
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], 3.43194189);
+         
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], 3.43194189);
+         
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], 3.43194189);
+         
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -7.92964);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -2.0653964);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -2.6868659);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], 1.69940972);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -0.5676475);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -9.204927);
+         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], 3.43194189);
 
      }
  }
@@ -529,7 +576,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(150);
-    s.SetMaxGenerations(3000);
+    s.SetMaxGenerations(8000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -594,7 +641,7 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "model 3" << endl;
+    infostream << "model 4" << endl;
     infostream << "population = 150" << endl;
     infostream << "generations = 8000" << endl;
 
