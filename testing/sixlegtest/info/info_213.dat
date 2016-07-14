@@ -4,6 +4,6 @@ MaxLegForce6 = 0.05
 MaxLegForce1 = 0.75
 7 neurons
 all checking functions in place
-model 2
+Test connections 1
 population = 1000
 generations = 10000

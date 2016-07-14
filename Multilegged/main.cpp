@@ -44,11 +44,11 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = true;
+const bool Model1 = false;
 //all six connections evolved
 const bool Model2 = false;
 //contralateral connections evolved
-const bool Model3 = false;
+const bool Model3 = true;
 //ipsilateral connections evolved
 const bool Model4 = false;
 
@@ -62,7 +62,7 @@ int onelegneuron_num = /*5*/7;
 double vector_fill = 2;
 
 
-/*double*/int vector_size = /*(neuron_num * neuron_num) + (2 * neuron_num)*/112;
+/*double*/int vector_size = /*112*/ 84;
 int vector_size_Model1 = 77 /*91*/;
 double min_bias = -10;
 double max_bias = 10;
@@ -332,6 +332,69 @@ double max_weight = 10;
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg4[i], leg5[i], NervousSystem.ConnectionWeight(leg5[i], leg4[i]));
          }
+         NervousSystem.SetConnectionWeight(leg1[0], leg6[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg1[1], leg6[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg1[2], leg6[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg1[3], leg6[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg1[4], leg6[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg1[5], leg6[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg1[6], leg6[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg6[0], leg1[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg6[1], leg1[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg6[2], leg1[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg6[3], leg1[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg6[4], leg1[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg6[5], leg1[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg6[6], leg1[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg5[0], leg6[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg5[1], leg6[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg5[2], leg6[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg5[3], leg6[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg5[4], leg6[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg5[5], leg6[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg5[6], leg6[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg6[0], leg5[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg6[1], leg5[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg6[2], leg5[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg6[3], leg5[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg6[4], leg5[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg6[5], leg5[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg6[6], leg5[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg2[0], leg3[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg2[1], leg3[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg2[2], leg3[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg2[3], leg3[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg2[4], leg3[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg2[5], leg3[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg2[6], leg3[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg3[0], leg2[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg3[1], leg2[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg3[2], leg2[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg3[3], leg2[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg3[4], leg2[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg3[5], leg2[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg3[6], leg2[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg3[0], leg4[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg3[1], leg4[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg3[2], leg4[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg3[3], leg4[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg3[4], leg4[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg3[5], leg4[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg3[6], leg4[6], -7.224905);
+         
+         NervousSystem.SetConnectionWeight(leg4[0], leg3[0], -6.4634477);
+         NervousSystem.SetConnectionWeight(leg4[1], leg3[1], -5.4783309);
+         NervousSystem.SetConnectionWeight(leg4[2], leg3[2], 6.38807278);
+         NervousSystem.SetConnectionWeight(leg4[3], leg3[3], -5.3927392);
+         NervousSystem.SetConnectionWeight(leg4[4], leg3[4], 7.97967587);
+         NervousSystem.SetConnectionWeight(leg4[5], leg3[5], -1.6330458);
+         NervousSystem.SetConnectionWeight(leg4[6], leg3[6], -7.224905);
      }
      
      //the legs are ipsilaterally connected
@@ -391,7 +454,7 @@ void DumpCircuit(int, TVector<double> &v)
     CTRNN c(neuron_num);
     Assign_params(v,c);
     
-    ofstream f("/Users/sophi529/Desktop/best_connections1.ns");
+    ofstream f("/Users/sophi529/Desktop/best.ns");
     f << c;
 
 }
@@ -445,7 +508,7 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(vector_size_Model1);
+    TSearch s(vector_size);
 
  
     //if(Model1)
@@ -466,7 +529,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(150);
-    s.SetMaxGenerations(1500);
+    s.SetMaxGenerations(3000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -482,7 +545,7 @@ int main(int argc, char* argv[])
     //
  
     // Load the CTRNN into the agent
-    char fname[] = "/Users/sophi529/Desktop/best_connections1.ns";
+    char fname[] = "/Users/sophi529/Desktop/best.ns";
     ifstream ifs;
     ifs.open(fname);
     if (!ifs) {
@@ -531,9 +594,9 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "model 2" << endl;
-    infostream << "population = 1000" << endl;
-    infostream << "generations = 10000" << endl;
+    infostream << "model 3" << endl;
+    infostream << "population = 150" << endl;
+    infostream << "generations = 8000" << endl;
 
 
 
