@@ -44,9 +44,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = false;
+const bool Model1 = true;
 //all six connections evolved
-const bool Model2 = true;
+const bool Model2 = false;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
@@ -63,7 +63,7 @@ double vector_fill = 2;
 
 
 /*double*/int vector_size = /*(neuron_num * neuron_num) + (2 * neuron_num)*/112;
-int vector_size_Model1 = /*50*/ 91;
+int vector_size_Model1 = 77 /*91*/;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -234,7 +234,7 @@ double max_weight = 10;
 
      
      //test connections 1
-     /*
+     
      if (Model1) {
          
          for(int i = 0;i <= onelegneuron_num - 1;i++){
@@ -261,7 +261,7 @@ double max_weight = 10;
          //return;
 
      }
-      */
+      /*
      //Test connections 2
      if(Model1) {
          for (int i = 0; i <= onelegneuron_num-1; i++) {
@@ -285,6 +285,7 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
          }
      }
+      */
      
      //the legs are completely interconnected (contra and ipsalaterally)
      if(Model2) {
@@ -390,7 +391,7 @@ void DumpCircuit(int, TVector<double> &v)
     CTRNN c(neuron_num);
     Assign_params(v,c);
     
-    ofstream f("/Users/sophi529/Desktop/best.ns");
+    ofstream f("/Users/sophi529/Desktop/best_connections1.ns");
     f << c;
 
 }
@@ -444,7 +445,7 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(vector_size);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
@@ -464,8 +465,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(1000);
-    s.SetMaxGenerations(10000);
+    s.SetPopulationSize(150);
+    s.SetMaxGenerations(1500);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -481,7 +482,7 @@ int main(int argc, char* argv[])
     //
  
     // Load the CTRNN into the agent
-    char fname[] = "/Users/sophi529/Desktop/best.ns";
+    char fname[] = "/Users/sophi529/Desktop/best_connections1.ns";
     ifstream ifs;
     ifs.open(fname);
     if (!ifs) {
