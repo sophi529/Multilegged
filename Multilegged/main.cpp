@@ -464,7 +464,7 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(500);
+    s.SetPopulationSize(1000);
     s.SetMaxGenerations(10000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
@@ -531,7 +531,7 @@ int main(int argc, char* argv[])
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
     infostream << "model 2" << endl;
-    infostream << "population = 500" << endl;
+    infostream << "population = 1000" << endl;
     infostream << "generations = 10000" << endl;
 
 
