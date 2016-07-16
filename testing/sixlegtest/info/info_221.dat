@@ -1,0 +1,9 @@
+Seed: 35343332
+Average velocity = 1.23409
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+7 neurons
+all checking functions in place
+model 4
+population = 400
+generations = 8000
