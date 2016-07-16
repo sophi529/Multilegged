@@ -424,52 +424,52 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg4[i]));
          }
          NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg1[0], leg2[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg1[1], leg2[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg1[2], leg2[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg1[3], leg2[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg1[4], leg2[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg1[5], leg2[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg1[6], leg2[6], 3.1424716);
          
          NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg2[0], leg1[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg2[1], leg1[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg2[2], leg1[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg2[3], leg1[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg2[4], leg1[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg2[5], leg1[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg2[6], leg1[6], 3.1424716);
          
          NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg6[0], leg3[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg6[1], leg3[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg6[2], leg3[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg6[3], leg3[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg6[4], leg3[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg6[5], leg3[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg6[6], leg3[6], 3.1424716);
          
          NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg3[0], leg6[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg3[1], leg6[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg3[2], leg6[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg3[3], leg6[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg3[4], leg6[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg3[5], leg6[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg3[6], leg6[6], 3.1424716);
          
          NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg5[0], leg4[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg5[1], leg4[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg5[2], leg4[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg5[3], leg4[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg5[4], leg4[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg5[5], leg4[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg5[6], leg4[6], 3.1424716);
          
          NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -0.5385094);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -9.4061168);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], 0.94624972);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -9.93544);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], 4.73082539);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], -8.1872014);
-         NervousSystem.SetConnectionWeight(leg4[0], leg5[0], 3.1424716);
+         NervousSystem.SetConnectionWeight(leg4[1], leg5[1], -9.4061168);
+         NervousSystem.SetConnectionWeight(leg4[2], leg5[2], 0.94624972);
+         NervousSystem.SetConnectionWeight(leg4[3], leg5[3], -9.93544);
+         NervousSystem.SetConnectionWeight(leg4[4], leg5[4], 4.73082539);
+         NervousSystem.SetConnectionWeight(leg4[5], leg5[5], -8.1872014);
+         NervousSystem.SetConnectionWeight(leg4[6], leg5[6], 3.1424716);
 
      }
  }
@@ -644,6 +644,8 @@ int main(int argc, char* argv[])
     infostream << "model 4" << endl;
     infostream << "population = 400" << endl;
     infostream << "generations = 8000" << endl;
+    infostream << "VD=0.999" << endl;
+    infostream << "Fixed connections" << endl;
 
 
 
