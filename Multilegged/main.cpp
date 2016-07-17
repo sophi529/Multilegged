@@ -576,7 +576,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(400);
-    s.SetMaxGenerations(8000);
+    s.SetMaxGenerations(10000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -643,8 +643,8 @@ int main(int argc, char* argv[])
     infostream << "all checking functions in place" << endl;
     infostream << "model 4" << endl;
     infostream << "population = 400" << endl;
-    infostream << "generations = 8000" << endl;
-    infostream << "VD=0.999" << endl;
+    infostream << "generations = 10000" << endl;
+    infostream << "VD=0.95" << endl;
     infostream << "Fixed connections" << endl;
 
 
