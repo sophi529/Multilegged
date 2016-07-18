@@ -584,6 +584,7 @@ int main(int argc, char* argv[])
     s.SetElitistFraction(0.01);
     s.SetSearchConstraint(1);
     s.SetCheckpointInterval(5);
+    s.SetReEvaluationFlag(1);
 
     // Run the search
     s.ExecuteSearch();
