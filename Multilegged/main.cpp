@@ -44,11 +44,11 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = false;
+const bool Model1 = true;
 //all six connections evolved
 const bool Model2 = false;
 //contralateral connections evolved
-const bool Model3 = true;
+const bool Model3 = false;
 //ipsilateral connections evolved
 const bool Model4 = false;
 
@@ -63,7 +63,7 @@ double vector_fill = 2;
 
 
 /*double*/int vector_size = /*112*/ 84 /*91*/;
-int vector_size_Model1 = 77 /*91*/;
+int vector_size_Model1 = /*77*/ 91;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -234,7 +234,7 @@ double max_weight = 10;
 
      
      //test connections 1
-     
+     /*
      if (Model1) {
          
          for(int i = 0;i <= onelegneuron_num - 1;i++){
@@ -261,7 +261,8 @@ double max_weight = 10;
          //return;
 
      }
-      /*
+      */
+
      //Test connections 2
      if(Model1) {
          for (int i = 0; i <= onelegneuron_num-1; i++) {
@@ -285,7 +286,6 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
          }
      }
-      */
      
      //the legs are completely interconnected (contra and ipsalaterally)
      if(Model2) {
@@ -555,7 +555,7 @@ int main(int argc, char* argv[])
     
 
     
-    TSearch s(vector_size);
+    TSearch s(vector_size_Model1);
 
  
     //if(Model1)
@@ -576,7 +576,7 @@ int main(int argc, char* argv[])
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
     s.SetPopulationSize(150);
-    s.SetMaxGenerations(3000);
+    s.SetMaxGenerations(8000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -642,9 +642,9 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "model 3" << endl;
+    infostream << "test connections 2" << endl;
     infostream << "population = 150" << endl;
-    infostream << "generations = 3000" << endl;
+    infostream << "generations = 8000" << endl;
     infostream << "VD=0.999" << endl;
     infostream << "reevaluation flag" << endl;
 
