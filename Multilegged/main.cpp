@@ -48,9 +48,9 @@ const bool Model1 = false;
 //all six connections evolved
 const bool Model2 = false;
 //contralateral connections evolved
-const bool Model3 = false;
+const bool Model3 = true;
 //ipsilateral connections evolved
-const bool Model4 = true;
+const bool Model4 = false;
 
 
 
@@ -62,7 +62,7 @@ int onelegneuron_num = /*5*/7;
 double vector_fill = 2;
 
 
-/*double*/int vector_size = /*112*/ /*84*/ 91;
+/*double*/int vector_size = /*112*/ 84 /*91*/;
 int vector_size_Model1 = 77 /*91*/;
 double min_bias = -10;
 double max_bias = 10;
@@ -575,8 +575,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(400);
-    s.SetMaxGenerations(10000);
+    s.SetPopulationSize(150);
+    s.SetMaxGenerations(3000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -642,11 +642,11 @@ int main(int argc, char* argv[])
     infostream << "MaxLegForce1 = 0.75" << endl;
     infostream << "7 neurons" << endl;
     infostream << "all checking functions in place" << endl;
-    infostream << "model 4" << endl;
-    infostream << "population = 400" << endl;
-    infostream << "generations = 10000" << endl;
-    infostream << "VD=0.95" << endl;
-    infostream << "Fixed connections" << endl;
+    infostream << "model 3" << endl;
+    infostream << "population = 150" << endl;
+    infostream << "generations = 3000" << endl;
+    infostream << "VD=0.999" << endl;
+    infostream << "reevaluation flag" << endl;
 
 
 
