@@ -1,0 +1,11 @@
+Seed: 67686665
+Average velocity = 1.07018
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+7 neurons
+all checking functions in place
+test connections 2
+population = 150
+generations = 8000
+VD=0.999
+reevaluation flag
