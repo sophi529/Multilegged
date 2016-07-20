@@ -51,6 +51,12 @@ const bool Model2 = false;
 const bool Model3 = false;
 //ipsilateral connections evolved
 const bool Model4 = false;
+//contra same and ipsa same
+const bool TC1 = false;
+//same connections front and back. diff center
+const bool TC2 = false;
+//all same connections
+const bool TC3 = false;
 
 
 
@@ -62,8 +68,7 @@ int onelegneuron_num = /*5*/7;
 double vector_fill = 2;
 
 
-/*double*/int vector_size = /*112*/ 84 /*91*/;
-int vector_size_Model1 = /*77*/ 91;
+int vector_size;
 double min_bias = -10;
 double max_bias = 10;
 
@@ -104,12 +109,10 @@ double max_weight = 10;
      int vi = 1;
      int vim = 1;
 
-  if (Model1)
-      
-  {
+//set neuron bias
  for(int i = 1;i <= onelegneuron_num;i++)
   {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vim++], min_bias, max_bias));}
-
+//set time constant
      for(int i = 1;i <= onelegneuron_num;i++) {
          double tau = MapSearchParameter(v[vim++], min_time, max_time);
          NervousSystem.SetNeuronTimeConstant(i, tau);
@@ -131,89 +134,8 @@ double max_weight = 10;
           NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
       }
 
-  }
-/*
      
-  else
-  {
- for(int i = 1;i <= neuron_num;i++)
- NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));
- 
- for(int i = 1;i <= neuron_num;i++) {
- double tau = MapSearchParameter(v[vi++], min_time, max_time);
- NervousSystem.SetNeuronTimeConstant(i, tau);
- }
-//for(int i = 1; i <= neuron_num; i++){
- //   NervousSystem.SetNeuronGain(i, MapSearchParameter(v[vi++], min_bias, max_bias));
-//}
-  }
-*/
-     
-     else
-     {
-         for(int i = 1;i <= onelegneuron_num;i++)
-         {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vi++], min_bias, max_bias));}
-         
-         for(int i = 1;i <= onelegneuron_num;i++) {
-             double tau = MapSearchParameter(v[vi++], min_time, max_time);
-             NervousSystem.SetNeuronTimeConstant(i, tau);
-         }
-         
-         //copy this to all 6 legs
-         for(int i = 0;i <= onelegneuron_num - 1;i++)
-         {NervousSystem.SetNeuronBias(leg2[i], NervousSystem.NeuronBias(leg1[i]));
-             NervousSystem.SetNeuronBias(leg3[i], NervousSystem.NeuronBias(leg1[i]));
-             NervousSystem.SetNeuronBias(leg4[i], NervousSystem.NeuronBias(leg1[i]));
-             NervousSystem.SetNeuronBias(leg5[i], NervousSystem.NeuronBias(leg1[i]));
-             NervousSystem.SetNeuronBias(leg6[i], NervousSystem.NeuronBias(leg1[i]));
-         }
-         for(int i = 0;i <= onelegneuron_num - 1;i++) {
-             NervousSystem.SetNeuronTimeConstant(leg2[i], NervousSystem.NeuronTimeConstant(leg1[i]));
-             NervousSystem.SetNeuronTimeConstant(leg3[i], NervousSystem.NeuronTimeConstant(leg1[i]));
-             NervousSystem.SetNeuronTimeConstant(leg4[i], NervousSystem.NeuronTimeConstant(leg1[i]));
-             NervousSystem.SetNeuronTimeConstant(leg5[i], NervousSystem.NeuronTimeConstant(leg1[i]));
-             NervousSystem.SetNeuronTimeConstant(leg6[i], NervousSystem.NeuronTimeConstant(leg1[i]));
-         }
-         
-     }
-      
-      
-     
-     
-     /*
-     if(!Model1)
-     {
-     //interconnections in one leg (What i was using to test things)
-     for(int i = 0;i <= (onelegneuron_num - 1);i++){
-         for(int j = 0; j <= (onelegneuron_num - 1); j++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg2[i], leg2[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg3[i], leg3[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg4[i], leg4[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg5[i], leg5[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg6[i], leg6[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-         }}
-     }*/
-     if(!Model1)
-     {
-         
-         //copy one set of connection weights for each leg
-         for(int i = 0;i <= (onelegneuron_num - 1);i++){
-             for(int j = 0; j <= (onelegneuron_num - 1); j++){
-                 NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vi++], min_weight, max_weight));
-                 
-                 NervousSystem.SetConnectionWeight(leg2[i], leg2[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-                 NervousSystem.SetConnectionWeight(leg3[i], leg3[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-                 NervousSystem.SetConnectionWeight(leg4[i], leg4[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-                 NervousSystem.SetConnectionWeight(leg5[i], leg5[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-                 NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
-             }
-         }
-     }
-     
-     else
-     {
-      
+
      //copy one set of connection weights for each leg
      for(int i = 0;i <= (onelegneuron_num - 1);i++){
          for(int j = 0; j <= (onelegneuron_num - 1); j++){
@@ -226,17 +148,13 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg6[i], leg6[j], NervousSystem.ConnectionWeight(leg1[i], leg1[j]));
          }
      }
+     
+     
+     if (Model1){
+         return;
      }
      
-     
-     
-     
-
-     
-     //test connections 1
-     /*
-     if (Model1) {
-         
+     if (TC1){
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
@@ -255,18 +173,13 @@ double max_weight = 10;
              NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
              NervousSystem.SetConnectionWeight(leg3[i], leg4[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
-          
+             
          }
-        
-         //return;
-
      }
-      */
-
-     //Test connections 2
-     if(Model1) {
+     
+     if (TC2){
          for (int i = 0; i <= onelegneuron_num-1; i++) {
-          
+             
              NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
              NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
              NervousSystem.SetConnectionWeight(leg4[i], leg5[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
@@ -287,24 +200,46 @@ double max_weight = 10;
          }
      }
      
+     if (TC3){
+         for(int i = 0; i <= onelegneuron_num -1; i++){
+             
+             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg4[i], leg5[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg5[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg5[i], leg6[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg5[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg6[i], leg3[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             NervousSystem.SetConnectionWeight(leg3[i], leg6[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
+             
+         }
+     }
+     
+  
      //the legs are completely interconnected (contra and ipsalaterally)
      if(Model2) {
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
              
              NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
-             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], MapSearchParameter(v[vim++], min_weight, max_weight));
 
              NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg2[i], leg3[i]));
-             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], MapSearchParameter(v[vi++], min_weight, max_weight));
-             NervousSystem.SetConnectionWeight(leg3[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], MapSearchParameter(v[vim++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg3[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
 
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg4[i]));
-             NervousSystem.SetConnectionWeight(leg4[i], leg5[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg4[i], leg5[i], MapSearchParameter(v[vim++], min_weight, max_weight));
 
              NervousSystem.SetConnectionWeight(leg5[i], leg4[i], NervousSystem.ConnectionWeight(leg4[i], leg5[i]));
-             NervousSystem.SetConnectionWeight(leg5[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg5[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
 
              NervousSystem.SetConnectionWeight(leg6[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
              NervousSystem.SetConnectionWeight(leg6[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg6[i]));
@@ -315,19 +250,19 @@ double max_weight = 10;
      //the legs are contralaterally connected
      if(Model3){
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg2[i], MapSearchParameter(v[vim++], min_weight, max_weight));
      }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg2[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg2[i]));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg6[i], leg3[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg6[i], leg3[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg3[i], leg6[i], NervousSystem.ConnectionWeight(leg6[i], leg3[i]));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg5[i], leg4[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg5[i], leg4[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg4[i], leg5[i], NervousSystem.ConnectionWeight(leg5[i], leg4[i]));
@@ -400,25 +335,25 @@ double max_weight = 10;
      //the legs are ipsilaterally connected
      if(Model4){
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg1[i], leg6[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg6[i], leg1[i], NervousSystem.ConnectionWeight(leg1[i], leg6[i]));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg6[i], leg5[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg6[i], leg5[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg5[i], leg6[i], NervousSystem.ConnectionWeight(leg6[i], leg5[i]));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg2[i], leg3[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg3[i], leg2[i], NervousSystem.ConnectionWeight(leg2[i], leg3[i]));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
-             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], MapSearchParameter(v[vi++], min_weight, max_weight));
+             NervousSystem.SetConnectionWeight(leg3[i], leg4[i], MapSearchParameter(v[vim++], min_weight, max_weight));
          }
          for(int i = 0;i <= onelegneuron_num - 1;i++){
              NervousSystem.SetConnectionWeight(leg4[i], leg3[i], NervousSystem.ConnectionWeight(leg3[i], leg4[i]));
@@ -474,28 +409,7 @@ double max_weight = 10;
      }
  }
 
- 
-   /*
- int leg1[onelegneuron_num];
-     int t = 1;
-     for(int i = 0; i <= onelegneuron_num-1; i++)
-         leg1[i] = t++;
-     
-     int vim = 1;
-     for(int i = 1;i <= onelegneuron_num;i++)
-        {NervousSystem.SetNeuronBias(i, MapSearchParameter(v[vim++], min_bias, max_bias));}
-         
-     for(int i = 1;i <= onelegneuron_num;i++) {
-         double tau = MapSearchParameter(v[vim++], min_time, max_time);
-         NervousSystem.SetNeuronTimeConstant(i, tau);
-         }
-     for(int i = 0;i <= (onelegneuron_num - 1);i++){
-         for(int j = 0; j <= (onelegneuron_num - 1); j++){
-             NervousSystem.SetConnectionWeight(leg1[i], leg1[j], MapSearchParameter(v[vim++], min_weight, max_weight));
-         }
-     }
- }
-*/
+
 void DumpCircuit(int, TVector<double> &v)
 {
     CTRNN c(neuron_num);
@@ -553,9 +467,30 @@ int main(int argc, char* argv[])
     
     LeggedAgent Insect;
     
+    if (Model1) {
+        vector_size = 63;
+    }
+    else if(Model2){
+        vector_size = 112;
+    }
+    else if(Model3){
+        vector_size = 84;
+    }
+    else if(Model4){
+        vector_size = 91;
+    }
+    else if(TC1){
+        vector_size = 77;
+    }
+    else if(TC2){
+        vector_size = 91;
+    }
+    else if(TC3){
+        vector_size = 70;
+    }
 
     
-    TSearch s(vector_size_Model1);
+    TSearch s(vector_size);
 
  
     //if(Model1)
@@ -575,8 +510,8 @@ int main(int argc, char* argv[])
     s.SetBestActionFunction(DumpCircuit);
     s.SetSelectionMode(RANK_BASED);
     s.SetReproductionMode(GENETIC_ALGORITHM);
-    s.SetPopulationSize(150);
-    s.SetMaxGenerations(8000);
+    s.SetPopulationSize(400);
+    s.SetMaxGenerations(10000);
     s.SetMutationVariance(0.1);
     s.SetCrossoverProbability(0.0);
     s.SetCrossoverMode(UNIFORM);
@@ -640,13 +575,10 @@ int main(int argc, char* argv[])
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
-    infostream << "7 neurons" << endl;
-    infostream << "all checking functions in place" << endl;
-    infostream << "test connections 2" << endl;
-    infostream << "population = 150" << endl;
-    infostream << "generations = 8000" << endl;
-    infostream << "VD=0.999" << endl;
-    infostream << "reevaluation flag" << endl;
+    infostream << "model 1" << endl;
+    infostream << "population = 400" << endl;
+    infostream << "generations = 10000" << endl;
+
 
 
 
