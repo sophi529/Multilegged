@@ -44,9 +44,9 @@ const double StepSize = 0.1;
 const double RunDuration = 250;
 const long RandomSeed = 1;
 //no connections evolved
-const bool Model1 = true;
+const bool Model1 = false;
 //all six connections evolved
-const bool Model2 = false;
+const bool Model2 = true;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
