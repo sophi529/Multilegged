@@ -46,11 +46,11 @@ const long RandomSeed = 1;
 //no connections evolved
 const bool Model1 = false;
 //all six connections evolved
-const bool Model2 = true;
+const bool Model2 = false;
 //contralateral connections evolved
 const bool Model3 = false;
 //ipsilateral connections evolved
-const bool Model4 = false;
+const bool Model4 = true;
 //contra same and ipsa same
 const bool TC1 = false;
 //same connections front and back. diff center
@@ -458,6 +458,7 @@ int main(int argc, char* argv[])
     string walk = argv[2];
     string info = argv[3];
     string help = argv[4];
+ 
   
     //int seed = 16263646;
     //string walk = "/Users/sophi529/Desktop/output/walk_186.dat";
@@ -466,6 +467,7 @@ int main(int argc, char* argv[])
  
     
     LeggedAgent Insect;
+    
     
     if (Model1) {
         vector_size = 63;
@@ -489,6 +491,8 @@ int main(int argc, char* argv[])
         vector_size = 70;
     }
 
+    
+    
     
     TSearch s(vector_size);
 
@@ -575,7 +579,7 @@ int main(int argc, char* argv[])
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
-    infostream << "model 1" << endl;
+    infostream << "model 4" << endl;
     infostream << "population = 400" << endl;
     infostream << "generations = 10000" << endl;
 
