@@ -1,0 +1,7 @@
+Seed: 29302827
+Average velocity = 3.67786
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+model 4
+population = 400
+generations = 10000
