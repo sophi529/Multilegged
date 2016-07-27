@@ -58,9 +58,9 @@ const bool TC2 = false;
 //all same connections
 const bool TC3 = false;
 //model 3 plus evolved ipsa module
-const bool TC4 = true;
+const bool TC4 = false;
 //model 4 plus evolved contra module
-const bool TC5 = false;
+const bool TC5 = true;
 
 
 
@@ -637,7 +637,7 @@ int main(int argc, char* argv[])
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
-    infostream << "TC4" << endl;
+    infostream << "TC5" << endl;
     infostream << "population = 400" << endl;
     infostream << "generations = 10000" << endl;
     
@@ -670,8 +670,8 @@ int main(int argc, char* argv[])
  int main()
  {
  TVector<double> testvec;
- testvec.SetSize(vector_size);
- for (int i = 1; i <=vector_size; i++) {
+ testvec.SetSize(98);
+ for (int i = 1; i <=98; i++) {
  testvec[i] = i;
  }
  
@@ -681,7 +681,7 @@ int main(int argc, char* argv[])
  cout << Insect.NervousSystem;
  return 0;
  }
- */
+*/
 
 
 /*

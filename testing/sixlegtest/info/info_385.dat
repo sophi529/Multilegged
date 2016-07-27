@@ -1,0 +1,7 @@
+Seed: 585989
+Average velocity = 2.89686
+MaxLegForce6 = 0.05
+MaxLegForce1 = 0.75
+TC5
+population = 400
+generations = 10000
