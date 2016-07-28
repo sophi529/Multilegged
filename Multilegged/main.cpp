@@ -56,11 +56,11 @@ const bool TC1 = false;
 //same connections front and back. diff center
 const bool TC2 = false;
 //all same connections
-const bool TC3 = false;
+const bool TC3 = true;
 //model 3 plus evolved ipsa module
 const bool TC4 = false;
 //model 4 plus evolved contra module
-const bool TC5 = true;
+const bool TC5 = false;
 
 
 
@@ -637,7 +637,7 @@ int main(int argc, char* argv[])
     infostream << "Average velocity = " << Insect.LegVec[2].JointY/RunDuration << endl;
     infostream << "MaxLegForce6 = 0.05" << endl;
     infostream << "MaxLegForce1 = 0.75" << endl;
-    infostream << "TC5" << endl;
+    infostream << "TC3" << endl;
     infostream << "population = 400" << endl;
     infostream << "generations = 10000" << endl;
     
